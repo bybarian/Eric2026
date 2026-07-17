@@ -1,0 +1,6 @@
+{
+  "name": "Eric Holmboe Taiwan Itinerary",
+  "description": "Interactive itinerary, dynamic map, schedule alerts, and AI travel concierge for Dr. Eric Holmboe's Taiwan visit (July 18–21, 2026) hosted by Cathay General Hospital & CMUH.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

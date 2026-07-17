@@ -1,0 +1,257 @@
+import { DayItinerary } from "./types";
+
+export const ITINERARY_DATA: DayItinerary[] = [
+  {
+    date: "7/18",
+    dayOfWeek: "Sat",
+    theme: "Arrival - Palace Museum - Ningxia",
+    subtitle: "Cultural Welcome & Historic Splendor",
+    breakfast: "Hotel breakfast",
+    lunch: "Silks Palace (故宮晶華)",
+    lunchNotes: "Located on the Palace Museum grounds, serving exquisite dishes inspired by the museum's imperial treasures (e.g., Jadeite Cabbage, Meat-shaped Stone).",
+    dinner: "Ningxia Night Market Chien Sui Feast (寧夏夜市千歲宴)",
+    dinnerNotes: "A legendary culinary feast where over 20 representative street food dishes from Ningxia's top stalls are served directly to a banquet table, offering hassle-free gourmet tasting.",
+    hotel: "Madison Taipei Hotel (慕軒飯店)",
+    hotelChineseName: "台北慕軒飯店",
+    hotelNotes: "An award-winning luxury boutique hotel on Dunhua South Road, famous for its understated elegance and serene, peaceful ambiance.",
+    colorScheme: {
+      primary: "emerald",
+      accent: "#00828a", // Cathay General Hospital Teal
+      bg: "bg-emerald-50/50"
+    },
+    activities: [
+      {
+        id: "18-1",
+        time: "05:20",
+        title: "Taiwan Arrival & Hotel Check-in",
+        locationName: "Taoyuan International Airport (T2) to Madison Taipei Hotel",
+        chineseName: "桃園機場第二航廈 & 台北慕軒飯店",
+        description: "Arrive at Taoyuan Airport Terminal 2. A private car will transfer you to Madison Taipei Hotel to check in, unpack, and rest after your flight.",
+        icon: "plane",
+        notes: "A welcome package including a local SIM card, EasyCard, and a guide booklet from Cathay General Hospital is ready at the desk.",
+        coords: { x: 35, y: 18 }
+      },
+      {
+        id: "18-2",
+        time: "12:00",
+        title: "Imperial Lunch at Silks Palace",
+        locationName: "Silks Palace",
+        chineseName: "故宮晶華",
+        description: "Enjoy a special welcome lunch adjacent to the National Palace Museum, featuring imperial delicacies crafted to resemble famous antiquities.",
+        icon: "utensils",
+        notes: "Must try: The mini edible 'Jadeite Cabbage' (bok choy in chicken broth) and 'Meat-Shaped Stone' (braised pork belly).",
+        coords: { x: 53, y: 11 }
+      },
+      {
+        id: "18-3",
+        time: "14:00",
+        title: "National Palace Museum Tour",
+        locationName: "National Palace Museum",
+        chineseName: "國立故宮博物院",
+        description: "An exclusive guided tour of one of the world's greatest collections of Chinese imperial artifacts, spanning over 8,000 years of history.",
+        icon: "museum",
+        notes: "Explore historical treasures including masterworks of bronze, jade, calligraphy, and ceramics from former imperial collections.",
+        coords: { x: 54, y: 12 }
+      },
+      {
+        id: "18-4",
+        time: "18:00",
+        title: "Chien Sui Banquet Feast",
+        locationName: "Ningxia Night Market",
+        chineseName: "寧夏夜市千歲宴",
+        description: "A customized traditional street food banquet. Enjoy a selection of 20+ legendary street eats served in comfort directly to your table.",
+        icon: "sparkles",
+        notes: "Features Michelin Bib Gourmand snacks, traditional oyster omelet, braised pork rice, and sweet taro balls.",
+        coords: { x: 51, y: 15 }
+      }
+    ]
+  },
+  {
+    date: "7/19",
+    dayOfWeek: "Sun",
+    theme: "Coastline - Mountains",
+    subtitle: "Scenic Northern Ridges & Coastal Landscapes",
+    breakfast: "Hotel breakfast",
+    lunch: "Shen'ao Seafood Restaurant (深澳海鮮餐廳)",
+    lunchNotes: "Ultra-fresh, locally caught Pacific seafood cooked in classic Taiwanese coastal style right next to the harbor.",
+    dinner: "Diamond Tony's 101 (隨意鳥地方 101)",
+    dinnerNotes: "Premium Italian fine-dining located on the 85th floor of Taipei 101, featuring sweeping panoramic night views of Taipei Basin.",
+    hotel: "Madison Taipei Hotel (慕軒飯店)",
+    hotelChineseName: "台北慕軒飯店",
+    hotelNotes: "Second night at Madison Taipei. Make sure to try their award-winning cocktails or peaceful tea selection at the lounge.",
+    colorScheme: {
+      primary: "sky",
+      accent: "#105295", // CMU Hospital Deep Blue
+      bg: "bg-sky-50/50"
+    },
+    activities: [
+      {
+        id: "19-1",
+        time: "08:30",
+        title: "Depart Taipei to Yehliu Geopark",
+        locationName: "Yehliu Geopark",
+        chineseName: "野柳地質公園",
+        description: "Travel to the North Coast to explore spectacular hoodoo stones and geological formations carved by wave and wind erosion.",
+        icon: "compass",
+        notes: "Spot the famous 'Queen's Head' rock formation. The coastline walk is breezy and beautiful.",
+        coords: { x: 63, y: 10 }
+      },
+      {
+        id: "19-2",
+        time: "11:30",
+        title: "Coastal Seafood Lunch & Rail Bike",
+        locationName: "Shen'ao Seafood Restaurant & Badouzi Rail Bike",
+        chineseName: "深澳漁港海鮮 & 八斗子鐵道自行車",
+        description: "Indulge in a fresh seafood lunch, followed by a scenic rail-biking excursion on the old coastal railway overlooking the Pacific Ocean.",
+        icon: "bike",
+        notes: "Cycle on colorful pedal cars with stunning ocean views on one side and lush mountain cliffs on the other.",
+        coords: { x: 67, y: 11 }
+      },
+      {
+        id: "19-3",
+        time: "14:30",
+        title: "Wangyou Valley & Jinguashi Gold Museum",
+        locationName: "Chaojing Park / Wangyou Valley & Gold Museum",
+        chineseName: "望幽谷 & 金瓜石黃金博物館",
+        description: "Walk the scenic clifftop pathways of Wangyou Valley (literally 'Forget-Your-Worries Valley'), then visit the historical Jinguashi Gold Ecological Park.",
+        icon: "map",
+        notes: "At the Gold Museum, you can touch a real 220kg solid 99.9% gold bar and tour an old Japanese colonial gold-mining tunnel.",
+        coords: { x: 68, y: 13 }
+      },
+      {
+        id: "19-4",
+        time: "16:30",
+        title: "Sunset Views at Buyan Pavilion",
+        locationName: "Buyan Pavilion",
+        chineseName: "不厭亭",
+        description: "Visit the spectacular ridge peak viewing point, famous for a single road slicing through golden pampas grass with panoramic views of Keelung Mountain.",
+        icon: "camera",
+        notes: "Often called 'The Road to Heaven' because the ridge road seems to climb directly into the clouds.",
+        coords: { x: 69, y: 14 }
+      },
+      {
+        id: "19-5",
+        time: "19:00",
+        title: "Taipei 101 High-Altitude Dinner",
+        locationName: "Diamond Tony's 101 (85F)",
+        chineseName: "台北101隨意鳥地方85樓",
+        description: "Return to Taipei and ride the high-speed elevator to the 85th floor of Taipei 101 for Italian fine dining in the clouds.",
+        icon: "sunset",
+        notes: "A wonderful celebration dinner with leadership from Cathay General Hospital to discuss residency competency-based education milestones.",
+        coords: { x: 53, y: 16 }
+      }
+    ]
+  },
+  {
+    date: "7/20",
+    dayOfWeek: "Mon",
+    theme: "Taipei Culture - Transfer to Cingjing",
+    subtitle: "Historic Temples, Gourmet Xiaolongbao & Alpine Drive",
+    breakfast: "Hotel breakfast",
+    lunch: "Din Tai Fung (鼎泰豐)",
+    lunchNotes: "World-famous Michelin-recognized soup dumplings. Every single dumpling is hand-folded with exactly 18 delicate pleats.",
+    dinner: "The Old England Manor Banquet (老英格蘭西餐廳)",
+    dinnerNotes: "A luxury multi-course fine-dining European dinner inside the gothic cathedral banquet hall of The Old England.",
+    hotel: "The Old England, Cingjing (老英格蘭莊園)",
+    hotelChineseName: "清境老英格蘭莊園",
+    hotelNotes: "A breathtaking English Tudor-style luxury castle nestled high in the mist-shrouded central mountains of Nantou.",
+    colorScheme: {
+      primary: "amber",
+      accent: "#e07a5f",
+      bg: "bg-amber-50/50"
+    },
+    activities: [
+      {
+        id: "20-1",
+        time: "09:00",
+        title: "Lungshan Temple Historic Walk",
+        locationName: "Mengjia Lungshan Temple",
+        chineseName: "艋舺龍山寺",
+        description: "Visit Taipei's oldest, most revered temple, built in 1738. Experience the mesmerizing chants, traditional temple architecture, and historic cultural rituals.",
+        icon: "landmark",
+        notes: "An amazing architectural marvel featuring exquisite woodcarvings, dragon pillars, and historical stone sculptures.",
+        coords: { x: 48, y: 17 }
+      },
+      {
+        id: "20-2",
+        time: "10:30",
+        title: "Chiang Kai-shek Memorial Hall",
+        locationName: "CKS Memorial Hall & Liberty Square",
+        chineseName: "中正紀念堂 & 自由廣場",
+        description: "Explore the majestic blue-roofed memorial hall, the towering arches of Liberty Square, and witness the impressive changing of the honorary guard.",
+        icon: "award",
+        notes: "The bronze guard change occurs exactly on the hour. Liberty Square is Taipei's primary public forum.",
+        coords: { x: 52, y: 18 }
+      },
+      {
+        id: "20-3",
+        time: "12:00",
+        title: "Feast of Xiaolongbao at Din Tai Fung",
+        locationName: "Din Tai Fung",
+        chineseName: "鼎泰豐",
+        description: "Savor Taiwan's premier culinary export: steaming hot, hand-pleated soup dumplings alongside signature pork chop fried rice and spicy wontons.",
+        icon: "soup",
+        notes: "Mix 1 part soy sauce with 3 parts ginger vinegar, pierce the dumpling wrapper to release the broth, and enjoy!",
+        coords: { x: 53, y: 19 }
+      },
+      {
+        id: "20-4",
+        time: "13:30",
+        title: "Scenic Transfer to Cingjing Alpine Resort",
+        locationName: "Taipei to Nantou Cingjing (3-Hour Scenic Drive)",
+        chineseName: "台北開車往南投清境 (3小時山路專車)",
+        description: "Depart Taipei in a comfortable executive coach. Journey south and climb into the spectacular Central Mountain Range of Nantou County.",
+        icon: "truck",
+        notes: "Watch the scenery transform from cityscapes to sub-tropical valleys, and finally into crisp, mist-kissed alpine cedar forests.",
+        coords: { x: 49, y: 32 }
+      },
+      {
+        id: "20-5",
+        time: "17:00",
+        title: "Check-in at The Old England Manor",
+        locationName: "The Old England, Cingjing",
+        chineseName: "老英格蘭莊園",
+        description: "Arrive at one of Taiwan's most luxury mountain hideaways. Indulge in high tea, tour the meticulously crafted gothic turrets and English gardens.",
+        icon: "hotel",
+        notes: "The manor features million-dollar audiophile stereo setups, marble fireplaces, and European antiques in every suite.",
+        coords: { x: 46, y: 45 }
+      }
+    ]
+  }
+];
+
+export const HOSPITAL_INFO = {
+  cathay: {
+    name: "Cathay General Hospital",
+    chineseName: "國泰綜合醫院",
+    founded: 1977,
+    specialty: "A premier academic medical center located in the heart of Taipei, pioneering clinical research, competency-based medical training, and high-quality patient-centered care.",
+    cbmContribution: "Cathay General Hospital is an absolute leader in Taiwanese residency milestones and entrustable professional activities (EPAs) implementations, adapting international ACGME frameworks beautifully to national clinical settings.",
+    iconColor: "#00828a"
+  },
+  cmuh: {
+    name: "China Medical University Hospital",
+    chineseName: "中國醫藥大學附設醫院",
+    founded: 1980,
+    specialty: "Based in Taichung, CMUH is one of Taiwan's largest medical networks, renowned for its cutting-edge cancer centers, multi-specialty trauma systems, and integration of Eastern Traditional Chinese Medicine with Western diagnostics.",
+    cbmContribution: "CMUH has successfully pioneered advanced medical simulation centers and digital competency-assessment portfolios, driving nationwide innovation in post-graduate medical training and milestone scoring.",
+    iconColor: "#105295"
+  }
+};
+
+export const TRAVEL_ALERTS = [
+  {
+    id: "alert-2",
+    type: "schedule",
+    title: "Long Drive Transfer (Taipei to Cingjing)",
+    content: "The scenic drive on Day 3 afternoon climbs from Taipei to Nantou Cingjing (~1,700m). The final hour involves winding mountain roads. If you are prone to motion sickness, we recommend taking a motion-sickness tablet after lunch at Din Tai Fung.",
+    day: "7/20"
+  },
+  {
+    id: "alert-3",
+    type: "cultural",
+    title: "Ningxia Night Market Etiquette",
+    content: "Ningxia's Chien Sui Feast is a seated banquet event, meaning we avoid crowds entirely! Tap water is not potable in Taiwan, but bottled water is provided abundantly at the table. Feel free to use fingers for the snacks; hot hand wipes will be supplied.",
+    day: "7/18"
+  }
+];
