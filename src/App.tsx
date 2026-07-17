@@ -42,7 +42,7 @@ function DayFocusImage({ date }: { date: string }) {
     return (
       <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white rounded-full p-[1px] border border-white shadow-md flex items-center justify-center overflow-hidden self-center">
         <img
-          src={`/images/${imageName}`}
+          src={`images/${imageName}`}
           alt={`Day ${date} Focus`}
           className="w-full h-full object-cover rounded-full"
           onError={() => setImgError(true)}
@@ -211,7 +211,7 @@ export default function App() {
           <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
             {!logoError ? (
               <img
-                src="/logo.png"
+                src="logo.png"
                 alt="Logo"
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-cover shadow-sm bg-emerald-700 shrink-0"
                 onError={() => setLogoError(true)}

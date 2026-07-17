@@ -35,7 +35,7 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
   if (imageName && !imgError) {
     return (
       <img
-        src={`/images/${imageName}`}
+        src={`images/${imageName}`}
         alt={`Attraction ${id}`}
         className={`${className} object-cover rounded-full`}
         onError={() => setImgError(true)}
