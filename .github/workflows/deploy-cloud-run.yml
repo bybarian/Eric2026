@@ -26,17 +26,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Recommended: Authenticate using Workload Identity Federation
-      # See: https://github.com/google-github-actions/auth
+      # Authenticate to Google Cloud using a Service Account Key
+      # Set up GCP_SA_KEY in your GitHub repository secrets with your service account JSON key.
       - name: Google Auth
         id: auth
         uses: google-github-actions/auth@v2
         with:
           token_format: 'access_token'
-          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # Set this secret in GitHub or use service_account_key
-          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'     # Set this secret in GitHub
-          # Alternatively, you can use a classic service account key JSON stored as a GitHub secret:
-          # credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      # Alternatively, if you want to use Workload Identity Federation (WIF) instead of keys:
+      # - name: Google Auth (WIF)
+      #   id: auth
+      #   uses: google-github-actions/auth@v2
+      #   with:
+          # token_format: 'access_token'
+          # workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+          # service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
 
       # Authenticate Docker to Google Artifact Registry
       - name: Docker Auth
