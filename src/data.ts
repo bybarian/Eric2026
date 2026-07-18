@@ -6,9 +6,9 @@ export const ITINERARY_DATA: DayItinerary[] = [
     dayOfWeek: "Sat",
     theme: "Arrival - Palace Museum - Ningxia",
     subtitle: "Cultural Welcome & Historic Splendor",
-    breakfast: "Hotel breakfast",
-    lunch: "Silks Palace (故宮晶華)",
-    lunchNotes: "Located on the Palace Museum grounds, serving exquisite dishes inspired by the museum's imperial treasures (e.g., Jadeite Cabbage, Meat-shaped Stone).",
+    breakfast: "Hotel breakfast (06:30 - 10:30, 2nd Floor)",
+    lunch: "Self-arranged (午餐自理)",
+    lunchNotes: "Self-arranged lunch before afternoon departure. A private car is scheduled for transfer at 13:30.",
     dinner: "Ningxia Night Market Chien Sui Feast (寧夏夜市千歲宴)",
     dinnerNotes: "A legendary culinary feast where over 20 representative street food dishes from Ningxia's top stalls are served directly to a banquet table, offering hassle-free gourmet tasting.",
     hotel: "Madison Taipei Hotel (慕軒飯店)",
@@ -32,15 +32,27 @@ export const ITINERARY_DATA: DayItinerary[] = [
         coords: { x: 35, y: 18 }
       },
       {
-        id: "18-2",
+        id: "18-r1",
         time: "13:00",
-        title: "Imperial Lunch at Silks Palace",
-        locationName: "Silks Palace",
-        chineseName: "故宮晶華",
-        description: "Enjoy a special welcome lunch adjacent to the National Palace Museum, featuring imperial delicacies crafted to resemble famous antiquities.",
-        icon: "utensils",
-        notes: "Must try: The mini edible 'Jadeite Cabbage' (bok choy in chicken broth) and 'Meat-Shaped Stone' (braised pork belly).",
-        coords: { x: 53, y: 11 }
+        title: "Shuttle Transfer Reminder (接駁提醒)",
+        locationName: "Madison Taipei Hotel",
+        chineseName: "台北慕軒飯店 接駁提醒",
+        description: "A private car is scheduled to arrive at 13:30 to transfer you from Madison Taipei Hotel to the National Palace Museum. Please prepare for departure.",
+        icon: "bell",
+        notes: "Driver: Mr. Wang (+886-912-345-678). Please be ready in the lobby.",
+        coords: { x: 35, y: 18 },
+        isReminder: true
+      },
+      {
+        id: "18-2",
+        time: "13:30",
+        title: "Depart Madison Taipei to Museum",
+        locationName: "Madison Taipei Hotel",
+        chineseName: "台北慕軒飯店 出發",
+        description: "Depart by private car from Madison Taipei Hotel and travel to the National Palace Museum.",
+        icon: "truck",
+        notes: "Enjoy a comfortable private transfer across Taipei to the foothills of Yangmingshan.",
+        coords: { x: 35, y: 18 }
       },
       {
         id: "18-3",
@@ -52,6 +64,17 @@ export const ITINERARY_DATA: DayItinerary[] = [
         icon: "museum",
         notes: "Explore historical treasures including masterworks of bronze, jade, calligraphy, and ceramics from former imperial collections.",
         coords: { x: 54, y: 12 }
+      },
+      {
+        id: "18-5",
+        time: "17:30",
+        title: "The Grand Hotel Taipei Tour",
+        locationName: "The Grand Hotel Taipei",
+        chineseName: "圓山大飯店",
+        description: "Visit the iconic Grand Hotel, a masterpiece of classic Chinese palace architecture. Marvel at its majestic red pillars, golden glazed tiles, and historic grandeur.",
+        icon: "landmark",
+        notes: "Admire panoramic Keelung River views and learn about the historic escape slide tunnels built for state guests.",
+        coords: { x: 50, y: 14 }
       },
       {
         id: "18-4",
@@ -71,7 +94,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
     dayOfWeek: "Sun",
     theme: "Coastline - Mountains",
     subtitle: "Scenic Northern Ridges & Coastal Landscapes",
-    breakfast: "Hotel breakfast",
+    breakfast: "Hotel breakfast (06:30 - 10:30, 2nd Floor)",
     lunch: "Shen'ao Seafood Restaurant (深澳海鮮餐廳)",
     lunchNotes: "Ultra-fresh, locally caught Pacific seafood cooked in classic Taiwanese coastal style right next to the harbor.",
     dinner: "Diamond Tony's 101 (隨意鳥地方 101)",
@@ -85,6 +108,18 @@ export const ITINERARY_DATA: DayItinerary[] = [
       bg: "bg-sky-50/50"
     },
     activities: [
+      {
+        id: "19-r1",
+        time: "08:00",
+        title: "Morning Departure Reminder (上午出發提醒)",
+        locationName: "Madison Taipei Hotel",
+        chineseName: "台北慕軒飯店 晨間出發提醒",
+        description: "The private transfer shuttle to Yehliu Geopark departs at 08:30. Please complete hotel breakfast and meet the group in the lobby.",
+        icon: "bell",
+        notes: "Driver: Mr. Wang (+886-912-345-678). Please gather in the lobby by 08:25.",
+        coords: { x: 35, y: 18 },
+        isReminder: true
+      },
       {
         id: "19-1",
         time: "08:30",
@@ -147,7 +182,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
     dayOfWeek: "Mon",
     theme: "Taipei Culture - Transfer to Cingjing",
     subtitle: "Historic Temples, Gourmet Xiaolongbao & Alpine Drive",
-    breakfast: "Hotel breakfast",
+    breakfast: "Hotel breakfast (06:30 - 10:30, 2nd Floor)",
     lunch: "Din Tai Fung (鼎泰豐 新光三越 A4店)",
     lunchNotes: "World-famous Michelin-recognized soup dumplings. Every single dumpling is hand-folded with exactly 18 delicate pleats.",
     dinner: "The Old England Manor Banquet (老英格蘭西餐廳)",
@@ -161,6 +196,18 @@ export const ITINERARY_DATA: DayItinerary[] = [
       bg: "bg-amber-50/50"
     },
     activities: [
+      {
+        id: "20-r1",
+        time: "08:30",
+        title: "Morning Departure Reminder (上午出發提醒)",
+        locationName: "Madison Taipei Hotel",
+        chineseName: "台北慕軒飯店 晨間出發提醒",
+        description: "The private transfer shuttle to Lungshan Temple departs at 09:00. As we will transfer south to Cingjing Alpine Resort in the afternoon, please pack your bags and complete checkout.",
+        icon: "bell",
+        notes: "Please make sure all checked luggage is loaded onto the shuttle coach before departure.",
+        coords: { x: 35, y: 18 },
+        isReminder: true
+      },
       {
         id: "20-1",
         time: "09:00",

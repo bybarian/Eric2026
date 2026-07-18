@@ -9,6 +9,7 @@ export interface Activity {
   coords: { x: number; y: number }; // Percentage coords on the custom SVG map
   chineseName?: string;
   detailsUrl?: string;
+  isReminder?: boolean;
 }
 
 export interface DayItinerary {

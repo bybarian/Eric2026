@@ -23,7 +23,8 @@ import {
   Copy,
   Check,
   Building,
-  ExternalLink
+  ExternalLink,
+  Bell
 } from "lucide-react";
 
 function DayFocusImage({ date }: { date: string }) {
@@ -314,6 +315,7 @@ export default function App() {
 
                 {currentDay.activities.map((act) => {
                   const isHighlighted = selectedActivity?.id === act.id;
+                  const isReminder = act.isReminder === true;
 
                   return (
                     <div
@@ -324,7 +326,9 @@ export default function App() {
                     >
                       {/* Left Time Label */}
                       <div className={`w-11 sm:w-14 text-right text-[10px] sm:text-[11px] font-mono pt-1.5 shrink-0 ${
-                        isHighlighted ? "text-emerald-700 font-bold" : "text-slate-400"
+                        isHighlighted 
+                          ? isReminder ? "text-amber-700 font-bold" : "text-emerald-700 font-bold" 
+                          : isReminder ? "text-amber-600 font-semibold" : "text-slate-400"
                       }`}>
                         {act.time}
                       </div>
@@ -333,14 +337,22 @@ export default function App() {
                       <div className="relative flex flex-col items-center shrink-0 w-3">
                         <div className={`w-3 h-3 rounded-full ring-4 relative z-10 transition-all ${
                           isHighlighted 
-                            ? "bg-emerald-500 ring-emerald-100 animate-pulse" 
-                            : "bg-slate-200 ring-white"
+                            ? isReminder
+                              ? "bg-amber-500 ring-amber-100 animate-pulse"
+                              : "bg-emerald-500 ring-emerald-100 animate-pulse" 
+                            : isReminder
+                              ? "bg-amber-400 ring-white"
+                              : "bg-slate-200 ring-white"
                         }`}></div>
                       </div>
 
                       {/* Content Box */}
                       {isHighlighted ? (
-                        <div className="bg-emerald-50 p-3 sm:p-4 rounded-xl border border-emerald-100 flex-1 transition duration-200 min-w-0">
+                        <div className={`p-3 sm:p-4 rounded-xl border flex-1 transition duration-200 min-w-0 ${
+                          isReminder
+                            ? "bg-amber-50/70 border-amber-200"
+                            : "bg-emerald-50 border-emerald-100"
+                        }`}>
                           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             {/* Cute Illustration - Styled as a circular badge like the uploaded style reference */}
                             <div className="w-20 h-20 sm:w-28 sm:h-28 shrink-0 bg-white rounded-full p-[1px] border border-white shadow-lg shadow-slate-200/80 flex items-center justify-center overflow-hidden self-start">
@@ -351,18 +363,26 @@ export default function App() {
                             
                             <div className="min-w-0 flex-1">
                               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2">
-                                <h3 className="font-bold text-emerald-900 text-xs sm:text-sm">
+                                <h3 className={`font-bold text-xs sm:text-sm ${
+                                  isReminder ? "text-amber-900" : "text-emerald-900"
+                                }`}>
                                   {act.title}
                                 </h3>
-                                <span className="bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider shrink-0 self-start sm:self-auto">
-                                  Selected Stop
+                                <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider shrink-0 self-start sm:self-auto text-white ${
+                                  isReminder ? "bg-amber-600" : "bg-emerald-600"
+                                }`}>
+                                  {isReminder ? "Reminder" : "Selected Stop"}
                                 </span>
                               </div>
-                              <p className="text-xs text-emerald-800 mt-1 leading-relaxed">
+                              <p className={`text-xs mt-1 leading-relaxed ${
+                                isReminder ? "text-amber-850" : "text-emerald-800"
+                              }`}>
                                 {act.description}
                               </p>
                               <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
-                                <p className="text-[11px] text-emerald-600 flex items-center gap-1 font-medium min-w-0 flex-1">
+                                <p className={`text-[11px] flex items-center gap-1 font-medium min-w-0 flex-1 ${
+                                  isReminder ? "text-amber-600" : "text-emerald-600"
+                                }`}>
                                   <MapPin className="w-3 h-3 shrink-0" />
                                   <span className="truncate">{act.locationName}</span>
                                 </p>
@@ -370,7 +390,9 @@ export default function App() {
                                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(act.locationName + ' ' + (act.chineseName || ''))}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-[10px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-md flex items-center justify-center gap-1.5 transition shrink-0 cursor-pointer text-center"
+                                  className={`text-[10px] text-white font-bold px-2.5 py-1 rounded-md flex items-center justify-center gap-1.5 transition shrink-0 cursor-pointer text-center ${
+                                    isReminder ? "bg-amber-600 hover:bg-amber-700" : "bg-emerald-600 hover:bg-emerald-700"
+                                  }`}
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <span>Open in Maps</span>
@@ -382,7 +404,11 @@ export default function App() {
                           
                           {/* Chinese Taxi Helper */}
                           {act.chineseName && (
-                            <div className="bg-white/80 rounded-lg p-2.5 border border-emerald-100/50 mt-3 flex items-center justify-between gap-3">
+                            <div className={`rounded-lg p-2.5 border mt-3 flex items-center justify-between gap-3 ${
+                              isReminder
+                                ? "bg-white/80 border-amber-100"
+                                : "bg-white/80 border-emerald-100/50"
+                            }`}>
                               <div className="min-w-0 flex-1">
                                 <span className="text-[9px] font-mono text-slate-500 font-semibold block uppercase">
                                   Show Driver (Taxi / Liaison)
@@ -396,11 +422,13 @@ export default function App() {
                                   e.stopPropagation();
                                   copyToClipboard(act.chineseName || "", act.id);
                                 }}
-                                className="p-1 hover:bg-emerald-100 text-emerald-800 rounded transition shrink-0"
+                                className={`p-1 rounded transition shrink-0 ${
+                                  isReminder ? "hover:bg-amber-100 text-amber-800" : "hover:bg-emerald-100 text-emerald-800"
+                                }`}
                                 title="Copy traditional text"
                               >
                                 {copiedId === act.id ? (
-                                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                                  <Check className={`w-3.5 h-3.5 ${isReminder ? "text-amber-600" : "text-emerald-600"}`} />
                                 ) : (
                                   <Copy className="w-3.5 h-3.5" />
                                 )}
@@ -410,7 +438,11 @@ export default function App() {
 
                           {/* Host Liaison Notes */}
                           {act.notes && (
-                            <div className="text-[11px] text-emerald-700/90 leading-normal pl-2 mt-3 border-l-2 border-emerald-400">
+                            <div className={`text-[11px] leading-normal pl-2 mt-3 border-l-2 ${
+                              isReminder
+                                ? "text-amber-700 border-amber-400"
+                                : "text-emerald-700/90 border-emerald-400"
+                            }`}>
                               <span className="font-bold uppercase text-[9px] tracking-wider block">
                                 Liaison Note
                               </span>
@@ -419,7 +451,9 @@ export default function App() {
                           )}
                         </div>
                       ) : (
-                        <div className="flex-1 transition rounded-xl p-2 -my-2 border border-transparent hover:bg-slate-50/50 min-w-0">
+                        <div className={`flex-1 transition rounded-xl p-2 -my-2 border border-transparent min-w-0 ${
+                          isReminder ? "hover:bg-amber-50/30" : "hover:bg-slate-50/50"
+                        }`}>
                           <div className="flex gap-3 sm:gap-4 items-start">
                             {/* Mini Illustration - Styled as a circular badge like the uploaded style reference */}
                             <div className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 bg-white rounded-full p-[1px] border border-white shadow-md shadow-slate-200/60 flex items-center justify-center overflow-hidden self-start">
@@ -429,7 +463,10 @@ export default function App() {
                             </div>
 
                             <div className="min-w-0 flex-1">
-                              <h3 className="font-bold text-xs sm:text-sm text-slate-800">
+                              <h3 className={`font-bold text-xs sm:text-sm flex items-center gap-1.5 ${
+                                isReminder ? "text-amber-800" : "text-slate-800"
+                              }`}>
+                                {isReminder && <Bell className="w-3.5 h-3.5 text-amber-500 animate-pulse shrink-0" />}
                                 {act.title}
                               </h3>
                               <p className="text-xs text-slate-500 mt-0.5 leading-relaxed line-clamp-2">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Activity } from "../types";
 import { TRAVEL_ALERTS } from "../data";
-import { AlertTriangle, Clock, Volume2, VolumeX, CloudSun, Compass, Thermometer, Wind } from "lucide-react";
+import { AlertTriangle, CloudSun, Compass, Thermometer, Wind } from "lucide-react";
 
 interface WeatherAlertsProps {
   selectedActivity: Activity | null;
@@ -9,8 +9,6 @@ interface WeatherAlertsProps {
 }
 
 export default function WeatherAlerts({ selectedActivity, onPlayChime }: WeatherAlertsProps) {
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [alarmSet, setAlarmSet] = useState(false);
 
   // Determine simulated weather parameters based on selected activity location
   const getWeatherInfo = () => {
@@ -111,14 +109,6 @@ export default function WeatherAlerts({ selectedActivity, onPlayChime }: Weather
     return TRAVEL_ALERTS;
   };
 
-  const handleTestAlarm = () => {
-    if (soundEnabled) {
-      onPlayChime();
-      setAlarmSet(true);
-      setTimeout(() => setAlarmSet(false), 3000);
-    }
-  };
-
   return (
     <div className="bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-6">
       {/* Title */}
@@ -172,52 +162,6 @@ export default function WeatherAlerts({ selectedActivity, onPlayChime }: Weather
             <span className="truncate">UV: {weather.uvIndex}</span>
           </div>
         </div>
-      </div>
-
-      {/* Alarm Reminder Sound Center */}
-      <div className="border border-slate-200 bg-slate-50 rounded-2xl p-4 sm:p-6 space-y-3.5">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-emerald-800" />
-            <span className="text-xs font-bold text-slate-800">Schedule Reminder Alarm</span>
-          </div>
-          <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-1.5 hover:bg-slate-200 rounded-lg transition"
-            title={soundEnabled ? "Mute audio chimes" : "Unmute audio chimes"}
-            id="sound-toggle-btn"
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-emerald-800" />
-            ) : (
-              <VolumeX className="w-4 h-4 text-slate-400" />
-            )}
-          </button>
-        </div>
-
-        <p className="text-[11px] text-slate-500 leading-normal">
-          Receive a simulated alarm sound to notify Dr. Holmboe before major transits (e.g., depart
-          at 13:30 to Cingjing). Click the button below to test.
-        </p>
-
-        <button
-          onClick={handleTestAlarm}
-          className={`w-full py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2 transition duration-200 border cursor-pointer ${
-            alarmSet
-              ? "bg-emerald-700 text-white border-transparent"
-              : "bg-white border-slate-200 hover:border-slate-300 text-slate-800 hover:bg-slate-50"
-          }`}
-          id="test-alarm-btn"
-        >
-          {alarmSet ? (
-            <>
-              <span className="animate-ping w-1.5 h-1.5 rounded-full bg-white block"></span>
-              <span>CHIME SUCCESS!</span>
-            </>
-          ) : (
-            <span>Test Alarm Chime (Audible)</span>
-          )}
-        </button>
       </div>
 
       {/* Active Warnings Checklist */}

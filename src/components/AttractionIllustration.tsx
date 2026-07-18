@@ -9,6 +9,7 @@ const IMAGE_MAPPING: Record<string, string> = {
   "18-1": "18-1_taoyuan_airport.png",
   "18-2": "18-2_silks_palace.png",
   "18-3": "18-3_palace_museum.png",
+  "18-5": "18-5_grand_hotel.png",
   "18-4": "18-4_ningxia_feast.png",
   "19-1": "19-1_yehliu_geopark.png",
   "19-2": "19-2_badouzi_railbike.png",
@@ -19,7 +20,10 @@ const IMAGE_MAPPING: Record<string, string> = {
   "20-2": "20-2_cks_memorial.png",
   "20-3": "20-3_din_tai_fung.png",
   "20-4": "20-4_cingjing_transfer.png",
-  "20-5": "20-5_old_england.png"
+  "20-5": "20-5_old_england.png",
+  "18-r1": "shuttle_reminder.gif",
+  "19-r1": "shuttle_reminder.gif",
+  "20-r1": "shuttle_reminder.gif"
 };
 
 export default function AttractionIllustration({ id, className = "w-full h-full" }: AttractionIllustrationProps) {
@@ -179,55 +183,56 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
       );
 
     case "18-2":
-      // 2. Silks Palace (故宮晶華 - Fine dining with palace background)
+      // 2. Depart Madison Taipei to Museum (Sleek private sedan traveling along mountain highway)
       return renderWithCircleClip(
         <>
-          <rect width="100" height="100" fill="#fdf4e3" />
-          
-          {/* Palace interior lattice background */}
-          <path d="M 5,0 L 5,100 M 95,0 L 95,100 M 0,15 L 100,15 M 0,85 L 100,85" stroke="#fbcfe8" strokeWidth="0.5" opacity="0.3" />
-          <rect x="20" y="5" width="60" height="32" fill="#fbcfe8" opacity="0.1" rx="2" />
+          <rect width="100" height="100" fill="url(#skyGrad)" />
+          {renderSoftClouds()}
 
-          {/* Traditional Palace Roof in background */}
-          <g transform="translate(18, 5)">
-            <rect x="15" y="10" width="34" height="15" fill="#ffffff" stroke="#94a3b8" strokeWidth="0.8" />
-            <path d="M 10,11 C 15,11 18,8 20,6 L 32,4 L 44,6 C 46,8 49,11 54,11 L 50,7 L 14,7 Z" fill="#0ea5e9" />
-            <rect x="18" y="15" width="28" height="2" fill="#ef4444" />
-            <line x1="22" y1="17" x2="22" y2="25" stroke="#94a3b8" strokeWidth="1" />
-            <line x1="32" y1="17" x2="32" y2="25" stroke="#94a3b8" strokeWidth="1" />
-            <line x1="42" y1="17" x2="42" y2="25" stroke="#94a3b8" strokeWidth="1" />
+          {/* Mountain silhouettes in background */}
+          <path d="M -10,65 Q 20,40 50,60 T 110,50 L 110,105 L -10,105 Z" fill="#a7f3d0" opacity="0.6" />
+          <path d="M -10,75 Q 35,55 70,72 T 110,68 L 110,105 L -10,105 Z" fill="url(#mountainGrad)" />
+
+          {/* Winding mountain highway in perspective */}
+          <polygon points="15,100 85,100 65,70 45,70" fill="#475569" />
+          <line x1="50" y1="100" x2="55" y2="70" stroke="#facc15" strokeWidth="1.2" strokeDasharray="3,3" />
+          {/* White side-barriers */}
+          <line x1="15" y1="100" x2="45" y2="70" stroke="#ffffff" strokeWidth="1.5" />
+          <line x1="85" y1="100" x2="65" y2="70" stroke="#ffffff" strokeWidth="1.5" />
+
+          {/* Sleek executive private car on the road */}
+          <g transform="translate(32, 72) scale(0.65)">
+            {/* Wheels */}
+            <circle cx="12" cy="22" r="4" fill="#0f172a" />
+            <circle cx="12" cy="22" r="2" fill="#94a3b8" />
+            <circle cx="36" cy="22" r="4" fill="#0f172a" />
+            <circle cx="36" cy="22" r="2" fill="#94a3b8" />
+
+            {/* Car body shadow */}
+            <rect x="2" y="17" width="44" height="4" fill="#1e293b" opacity="0.4" rx="2" />
+
+            {/* Car body */}
+            <path d="M 2,18 L 6,12 Q 12,5 20,5 L 34,5 Q 40,8 44,14 L 46,18 Z" fill="#1e293b" />
+            {/* Gloss accent */}
+            <path d="M 6,18 L 8,13 Q 12,6 20,6 L 32,6 Q 36,8 39,13 L 41,18 Z" fill="#334155" />
+
+            {/* Windows */}
+            <path d="M 12,12 L 13,8 L 22,8 L 22,12 Z" fill="#e2e8f0" opacity="0.8" />
+            <path d="M 24,12 L 24,8 L 32,8 Q 35,9 37,12 Z" fill="#e2e8f0" opacity="0.8" />
+
+            {/* Headlights and yellow light rays */}
+            <polygon points="45,16 65,13 65,23 45,19" fill="#fef08a" opacity="0.4" />
+            <circle cx="45" cy="17.5" r="1.5" fill="#fef08a" />
+            {/* Taillight */}
+            <rect x="2" y="15" width="2" height="3" fill="#ef4444" rx="0.5" />
           </g>
 
-          {/* Table Setting */}
-          <ellipse cx="50" cy="85" rx="46" ry="24" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
-          <ellipse cx="50" cy="85" rx="42" ry="20" fill="#f8fafc" />
-
-          {/* Glass of Red Wine on left */}
-          <g transform="translate(15, 62)">
-            <line x1="10" y1="12" x2="10" y2="26" stroke="#94a3b8" strokeWidth="1.5" />
-            <ellipse cx="10" cy="26" rx="5" ry="2" fill="#cbd5e1" />
-            <path d="M 5,12 C 5,20 15,20 15,12 Z" fill="rgba(255,255,255,0.7)" stroke="#94a3b8" strokeWidth="0.8" />
-            <path d="M 6,15 C 6,19 14,19 14,15 Z" fill="#991b1b" />
-          </g>
-
-          {/* Bowl of steaming Imperial Soup on right */}
-          <g transform="translate(56, 68)">
-            <path d="M 2,12 C 2,24 26,24 26,12 Z" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
-            <ellipse cx="14" cy="12" rx="11" ry="3.5" fill="#f59e0b" />
-            <circle cx="10" cy="12" r="2.5" fill="#b45309" />
-            {/* Steam */}
-            <path d="M 10,6 Q 12,0 9,-6" fill="none" stroke="#94a3b8" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-            <path d="M 18,5 Q 16,-1 20,-7" fill="none" stroke="#94a3b8" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-          </g>
-
-          {/* Middle Gourmet Dish Plate */}
-          <g transform="translate(32, 70)">
-            <ellipse cx="18" cy="12" rx="12" ry="6" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
-            <ellipse cx="18" cy="12" rx="9" ry="4" fill="#f1f5f9" />
-            {/* Gourmet beef cube/meat shaped stone mimic */}
-            <rect x="13" y="8" width="10" height="7" rx="1.5" fill="#7c2d12" />
-            <rect x="13" y="8" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.7" />
-            <circle cx="15" cy="13" r="1" fill="#16a34a" />
+          {/* Road sign post */}
+          <g transform="translate(14, 62)">
+            <rect x="3" y="12" width="1.5" height="18" fill="#64748b" />
+            <rect x="0" y="2" width="8" height="10" fill="#065f46" rx="1" stroke="#ffffff" strokeWidth="0.5" />
+            {/* Dynamic arrow symbol */}
+            <path d="M 4,4 L 4,8 M 4,4 L 2,6 M 4,4 L 6,6" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
           </g>
         </>
       );
@@ -287,6 +292,76 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
             <text x="8" y="14" fontSize="4.5" fontWeight="bold" fill="#7c2d12" textAnchor="middle" fontFamily="sans-serif">玉</text>
             <text x="8" y="20" fontSize="4.5" fontWeight="bold" fill="#15803d" textAnchor="middle" fontFamily="sans-serif">白</text>
             <text x="8" y="26" fontSize="4.5" fontWeight="bold" fill="#15803d" textAnchor="middle" fontFamily="sans-serif">菜</text>
+          </g>
+        </>
+      );
+
+    case "18-5":
+      // 5. The Grand Hotel Taipei (圓山大飯店 - Majestic Multi-Tiered Chinese Palace-style Building)
+      return renderWithCircleClip(
+        <>
+          {/* Deep royal sky backdrop */}
+          <rect width="100" height="100" fill="url(#skyGrad)" />
+          {renderSoftClouds()}
+
+          {/* Jiantan Mountain Greenery behind the hotel */}
+          <path d="M -10,75 Q 30,55 55,65 T 110,60 L 110,105 L -10,105 Z" fill="#15803d" opacity="0.7" />
+          <path d="M -10,80 Q 20,62 50,70 T 110,68 L 110,105 L -10,105 Z" fill="#166534" />
+
+          {/* Main Grand Hotel Palace Structure */}
+          <g transform="translate(18, 22)">
+            {/* White marble foundations/stair terraces */}
+            <rect x="4" y="44" width="56" height="14" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="0.5" />
+            {/* Grand red columns on foundation */}
+            <rect x="8" y="34" width="48" height="10" fill="#ffffff" stroke="#cbd5e1" strokeWidth="0.5" />
+            
+            {/* White grand stairs going down in foreground */}
+            <polygon points="26,58 38,58 35,44 29,44" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="0.5" />
+
+            {/* Red Pillars of the grand levels (Main lobby levels) */}
+            <rect x="6" y="20" width="52" height="15" fill="#ea580c" />
+            {/* Pillars details */}
+            <line x1="12" y1="20" x2="12" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+            <line x1="20" y1="20" x2="20" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+            <line x1="28" y1="20" x2="28" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+            <line x1="36" y1="20" x2="36" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+            <line x1="44" y1="20" x2="44" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+            <line x1="52" y1="20" x2="52" y2="35" stroke="#9a3412" strokeWidth="1.2" />
+
+            {/* Floor divisions (gold beams) */}
+            <rect x="6" y="18" width="52" height="2" fill="#fbbf24" />
+            <rect x="6" y="32" width="52" height="2" fill="#fbbf24" />
+
+            {/* Level 2 Red Pillars */}
+            <rect x="10" y="8" width="44" height="10" fill="#ea580c" />
+            <line x1="15" y1="8" x2="15" y2="18" stroke="#9a3412" strokeWidth="1" />
+            <line x1="22" y1="8" x2="22" y2="18" stroke="#9a3412" strokeWidth="1" />
+            <line x1="29" y1="8" x2="29" y2="18" stroke="#9a3412" strokeWidth="1" />
+            <line x1="36" y1="8" x2="36" y2="18" stroke="#9a3412" strokeWidth="1" />
+            <line x1="43" y1="8" x2="43" y2="18" stroke="#9a3412" strokeWidth="1" />
+            <line x1="50" y1="8" x2="50" y2="18" stroke="#9a3412" strokeWidth="1" />
+
+            {/* Level 1 Roof (Lower Yellow Palace Eaves) */}
+            <path d="M 2,21 C 6,21 8,18 10,16 L 20,15 L 44,15 L 54,16 C 56,18 58,21 62,21 C 58,19 55,16 52,16 L 12,16 C 9,16 6,19 2,21 Z" fill="#eab308" stroke="#b45309" strokeWidth="0.5" />
+
+            {/* Level 2 Roof (Top Grand Palace Eaves) */}
+            <path d="M 6,10 C 10,10 12,6 14,4 L 22,3 L 42,3 L 50,4 C 52,6 54,10 58,10 C 54,8 51,5 48,5 L 16,5 C 13,5 10,8 6,10 Z" fill="#eab308" stroke="#b45309" strokeWidth="0.5" />
+            
+            {/* Traditional blue/gold plaque on level 2 */}
+            <rect x="25" y="7" width="14" height="6" fill="#1e3a8a" stroke="#fbbf24" strokeWidth="0.8" rx="0.5" />
+            <text x="32" y="11.5" fontSize="3" fontWeight="bold" fill="#fbbf24" textAnchor="middle" fontFamily="sans-serif" letterSpacing="0.3">圓山</text>
+          </g>
+
+          {/* Decorative Red Archway (牌樓) pillar bases on edges */}
+          <g transform="translate(5, 70)">
+            <ellipse cx="6" cy="18" rx="6" ry="3" fill="#cbd5e1" />
+            <rect x="4" y="0" width="4" height="18" fill="#ea580c" />
+            <path d="M 1,2 C 4,2 6,0 8,-2 L 3,-2 Z" fill="#eab308" />
+          </g>
+          <g transform="translate(83, 70)">
+            <ellipse cx="6" cy="18" rx="6" ry="3" fill="#cbd5e1" />
+            <rect x="4" y="0" width="4" height="18" fill="#ea580c" />
+            <path d="M 1,2 C 4,2 6,0 8,-2 L 3,-2 Z" fill="#eab308" />
           </g>
         </>
       );
@@ -950,6 +1025,29 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
           <ellipse cx="78" cy="94" rx="16" ry="8" fill="#ec4899" />
           <ellipse cx="72" cy="95" rx="11" ry="6" fill="#f43f5e" />
           <ellipse cx="85" cy="90" rx="9" ry="5" fill="#3b82f6" />
+        </>
+      );
+    
+    case "18-r1":
+    case "19-r1":
+    case "20-r1":
+      // Shuttle / Transfer Notification Bell Badge
+      return renderWithCircleClip(
+        <>
+          <rect width="100" height="100" fill="#fffbeb" />
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#fbbf24" strokeWidth="2" />
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#fbbf24" strokeWidth="0.8" strokeDasharray="3,3" />
+          
+          {/* Elegant Ringing Bell */}
+          <g transform="translate(25, 23)">
+            <path d="M 25,6 C 21,6 18,9 18,13 L 18,24 C 18,29 14,31 11,33 L 11,36 L 39,36 L 39,33 C 36,31 32,29 32,24 L 32,13 C 32,9 29,6 25,6 Z" fill="#d97706" />
+            <circle cx="25" cy="39" r="4" fill="#b45309" />
+            <path d="M 25,2 C 26.5,2 27,4 27,6 L 23,6 C 23,4 23.5,2 25,2 Z" fill="#b45309" />
+            
+            {/* Ringing sound waves */}
+            <path d="M 6,18 Q 2,24 6,30" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+            <path d="M 44,18 Q 48,24 44,30" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+          </g>
         </>
       );
 
