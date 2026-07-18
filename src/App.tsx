@@ -24,7 +24,9 @@ import {
   Check,
   Building,
   ExternalLink,
-  Bell
+  Bell,
+  Phone,
+  User
 } from "lucide-react";
 
 function DayFocusImage({ date }: { date: string }) {
@@ -578,6 +580,53 @@ export default function App() {
                     </span>
                   </div>
                 </div>
+
+                {/* Driver & Plate Info */}
+                {(currentDay.driverName || currentDay.driverPhone || currentDay.licensePlate) && (
+                  <div className="border-t border-slate-800 pt-3 mt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300">
+                    {currentDay.driverName && (
+                      <div className="flex items-center gap-2">
+                        <User className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Driver / 司機</p>
+                          <p className="font-medium text-slate-100">{currentDay.driverName}</p>
+                        </div>
+                      </div>
+                    )}
+                    {currentDay.driverPhone && (
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Contact / 電話</p>
+                          <a href={`tel:${currentDay.driverPhone}`} className="font-medium text-slate-100 hover:text-emerald-400 transition underline decoration-dotted">
+                            {currentDay.driverPhone}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                    {currentDay.licensePlate && (
+                      <div className="flex items-center gap-2">
+                        <Car className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Plate / 車牌</p>
+                          <p className="font-medium text-slate-100 bg-slate-800 px-1.5 py-0.2 rounded border border-slate-700 inline-block font-mono text-[11px] mt-0.5">
+                            {currentDay.licensePlate}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Driver Notes */}
+                {currentDay.driverNotes && (
+                  <div className="border-t border-slate-800/60 pt-2.5 mt-2.5 text-[11px] text-amber-300 flex items-start gap-1.5 leading-normal">
+                    <span className="inline-block bg-amber-500/10 text-amber-300 border border-amber-500/20 rounded px-1 text-[9px] font-bold uppercase tracking-wider shrink-0 mt-0.5">
+                      Service Notice
+                    </span>
+                    <span className="font-medium">{currentDay.driverNotes}</span>
+                  </div>
+                )}
               </div>
 
             </div>

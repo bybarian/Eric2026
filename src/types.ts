@@ -26,6 +26,10 @@ export interface DayItinerary {
   hotel: string;
   hotelChineseName?: string;
   hotelNotes?: string;
+  driverName?: string;
+  driverPhone?: string;
+  licensePlate?: string;
+  driverNotes?: string;
   colorScheme: {
     primary: string; // Tailored branding color for the day
     accent: string;

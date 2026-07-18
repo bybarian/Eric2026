@@ -14,6 +14,9 @@ export const ITINERARY_DATA: DayItinerary[] = [
     hotel: "Madison Taipei Hotel (慕軒飯店)",
     hotelChineseName: "台北慕軒飯店",
     hotelNotes: "An award-winning luxury boutique hotel on Dunhua South Road, famous for its understated elegance and serene, peaceful ambiance.",
+    driverName: "Mr. Wang (王先生)",
+    driverPhone: "+886-912-345-678",
+    licensePlate: "TD-8888",
     colorScheme: {
       primary: "emerald",
       accent: "#00828a", // Cathay General Hospital Teal
@@ -39,7 +42,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
         chineseName: "台北慕軒飯店 接駁提醒",
         description: "A private car is scheduled to arrive at 13:30 to transfer you from Madison Taipei Hotel to the National Palace Museum. Please prepare for departure.",
         icon: "bell",
-        notes: "Driver: Mr. Wang (+886-912-345-678). Please be ready in the lobby.",
+        notes: "Driver: Mr. Wang (+886-912-345-678, License Plate: TD-8888). Please be ready in the lobby.",
         coords: { x: 35, y: 18 },
         isReminder: true
       },
@@ -102,6 +105,9 @@ export const ITINERARY_DATA: DayItinerary[] = [
     hotel: "Madison Taipei Hotel (慕軒飯店)",
     hotelChineseName: "台北慕軒飯店",
     hotelNotes: "Second night at Madison Taipei. Make sure to try their award-winning cocktails or peaceful tea selection at the lounge.",
+    driverName: "Mr. Lee (李先生)",
+    driverPhone: "0980-088-636",
+    licensePlate: "RFL-1855",
     colorScheme: {
       primary: "sky",
       accent: "#105295", // CMU Hospital Deep Blue
@@ -116,7 +122,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
         chineseName: "台北慕軒飯店 晨間出發提醒",
         description: "The private transfer shuttle to Yehliu Geopark departs at 08:30. Please complete hotel breakfast and meet the group in the lobby.",
         icon: "bell",
-        notes: "Driver: Mr. Wang (+886-912-345-678). Please gather in the lobby by 08:25.",
+        notes: "Driver: Mr. Lee (李先生, 0980-088-636, License Plate: RFL-1855). Please gather in the lobby by 08:25.",
         coords: { x: 35, y: 18 },
         isReminder: true
       },
@@ -190,6 +196,10 @@ export const ITINERARY_DATA: DayItinerary[] = [
     hotel: "The Old England, Cingjing (老英格蘭莊園)",
     hotelChineseName: "清境老英格蘭莊園",
     hotelNotes: "A breathtaking English Tudor-style luxury castle nestled high in the mist-shrouded central mountains of Nantou.",
+    driverName: "Mr. Chen (陳先生)",
+    driverPhone: "0961-100-049",
+    licensePlate: "RDP-7537",
+    driverNotes: "Active Hours: 09:00 - 13:30 (Morning transfers only / 僅提供 09:00 - 13:30 上午行程接駁)",
     colorScheme: {
       primary: "amber",
       accent: "#e07a5f",
@@ -202,9 +212,9 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "Morning Departure Reminder (上午出發提醒)",
         locationName: "Madison Taipei Hotel",
         chineseName: "台北慕軒飯店 晨間出發提醒",
-        description: "The private transfer shuttle to Lungshan Temple departs at 09:00. As we will transfer south to Cingjing Alpine Resort in the afternoon, please pack your bags and complete checkout.",
+        description: "The private transfer shuttle to Lungshan Temple departs at 09:00. As we will return to the hotel to collect our bags after lunch before transferring south to Cingjing, please complete checkout and leave your luggage stored at the hotel front desk (寄行李).",
         icon: "bell",
-        notes: "Please make sure all checked luggage is loaded onto the shuttle coach before departure.",
+        notes: "Driver: Mr. Chen (陳先生, 0961-100-049, License Plate: RDP-7537). Please check out and leave your bags at the hotel lobby/front desk (不需先上行李).",
         coords: { x: 35, y: 18 },
         isReminder: true
       },
@@ -247,9 +257,9 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "Scenic Transfer to Cingjing Alpine Resort",
         locationName: "Taipei to Nantou Cingjing (3-Hour Scenic Drive)",
         chineseName: "台北開車往南投清境 (3小時山路專車)",
-        description: "Depart Taipei in a comfortable executive coach. Journey south and climb into the spectacular Central Mountain Range of Nantou County.",
+        description: "Return to Madison Taipei Hotel to load the stored luggage, then depart Taipei in a comfortable executive coach. Journey south and climb into the spectacular Central Mountain Range of Nantou County.",
         icon: "truck",
-        notes: "Watch the scenery transform from cityscapes to sub-tropical valleys, and finally into crisp, mist-kissed alpine cedar forests.",
+        notes: "First collect the luggage stored at Madison Taipei (回慕軒飯店載行李). Watch the scenery transform into crisp, mist-kissed alpine cedar forests.",
         coords: { x: 49, y: 32 }
       },
       {
