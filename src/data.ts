@@ -28,7 +28,6 @@ export const ITINERARY_DATA: DayItinerary[] = [
         chineseName: "桃園機場第二航廈 & 台北慕軒飯店",
         description: "Arrive at Taoyuan Airport Terminal 2. A private car will transfer you to Madison Taipei Hotel to check in, unpack, and rest after your flight.",
         icon: "plane",
-        notes: "A welcome package including a local SIM card, EasyCard, and a guide booklet from Cathay General Hospital is ready at the desk.",
         coords: { x: 35, y: 18 }
       },
       {
