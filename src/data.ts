@@ -14,9 +14,6 @@ export const ITINERARY_DATA: DayItinerary[] = [
     hotel: "Madison Taipei Hotel (慕軒飯店)",
     hotelChineseName: "台北慕軒飯店",
     hotelNotes: "An award-winning luxury boutique hotel on Dunhua South Road, famous for its understated elegance and serene, peaceful ambiance.",
-    driverName: "Mr. Wang (王先生)",
-    driverPhone: "+886-912-345-678",
-    licensePlate: "TD-8888",
     colorScheme: {
       primary: "emerald",
       accent: "#00828a", // Cathay General Hospital Teal
@@ -42,7 +39,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
         chineseName: "台北慕軒飯店 接駁提醒",
         description: "A private car is scheduled to arrive at 13:30 to transfer you from Madison Taipei Hotel to the National Palace Museum. Please prepare for departure.",
         icon: "bell",
-        notes: "Driver: Mr. Wang (+886-912-345-678, License Plate: TD-8888). Please be ready in the lobby.",
+        notes: "Please be ready in the lobby.",
         coords: { x: 35, y: 18 },
         isReminder: true
       },
