@@ -12,12 +12,14 @@ const IMAGE_MAPPING: Record<string, string> = {
   "18-5": "18-5_grand_hotel.png",
   "18-4": "18-4_ningxia_feast.png",
   "19-1": "19-1_yehliu_geopark.png",
-  "19-2": "19-2_badouzi_railbike.png",
-  "19-3": "19-3_gold_museum.png",
-  "19-4": "19-4_buyan_pavilion.png",
+  "19-2": "19-2_shenao_seafood.png",
+  "19-2b": "19-2b_capybara_rock.png",
+  "19-3": "19-3_yinyang_sea.png",
+  "19-3b": "19-3b_golden_waterfall.png",
+  "19-3c": "19-3c_gold_museum.png",
+  "19-4": "19-4_return_taipei.png",
   "19-5": "19-5_taipei_101.png",
-  "20-1": "20-1_lungshan_temple.png",
-  "20-2": "20-2_cks_memorial.png",
+  "20-1": "20-1_cks_memorial.png",
   "20-3": "20-3_din_tai_fung.png",
   "20-4": "20-4_cingjing_transfer.png",
   "20-5": "20-5_old_england.png",
@@ -504,65 +506,160 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
       );
 
     case "19-2":
-      // 6. Badouzi Rail Bike (Cute pufferfish bike cart pedaling next to sea)
+      // 6. Coastal Seafood Lunch (Delicious crab, fish, and shrimp platter)
+      return renderWithCircleClip(
+        <>
+          <rect width="100" height="100" fill="#f0fdfa" />
+          <circle cx="50" cy="50" r="45" fill="#ccfbf1" />
+
+          {/* Plate */}
+          <circle cx="50" cy="52" r="36" fill="#38bdf8" />
+          <circle cx="50" cy="52" r="32" fill="#ffffff" />
+
+          {/* Steamed whole fish in center */}
+          <path d="M 28,52 Q 50,38 72,52 Q 50,66 28,52" fill="#0ea5e9" />
+          {/* Fish tail */}
+          <polygon points="28,52 18,44 20,52 18,60" fill="#0284c7" />
+          {/* Fish fins */}
+          <path d="M 45,43 Q 48,36 53,44" fill="#0284c7" />
+          <path d="M 45,61 Q 48,68 53,60" fill="#0284c7" />
+          {/* Fish eye and scales */}
+          <circle cx="64" cy="50" r="2" fill="#ffffff" />
+          <circle cx="64" cy="50" r="1" fill="#0f172a" />
+          <path d="M 50,48 Q 52,52 50,56 M 45,49 Q 47,52 45,55 M 55,48 Q 57,52 55,56" stroke="#ffffff" strokeWidth="1" fill="none" opacity="0.6" />
+
+          {/* Big red crab / shrimp next to it */}
+          <g transform="translate(42, 22) scale(0.6)">
+            <ellipse cx="12" cy="12" rx="10" ry="7" fill="#ef4444" />
+            {/* Claws */}
+            <path d="M 4,7 Q -4,-2 6,2" stroke="#ef4444" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M 20,7 Q 28,-2 18,2" stroke="#ef4444" strokeWidth="3" fill="none" strokeLinecap="round" />
+            {/* Legs */}
+            <line x1="6" y1="18" x2="2" y2="22" stroke="#ef4444" strokeWidth="2" />
+            <line x1="12" y1="19" x2="12" y2="24" stroke="#ef4444" strokeWidth="2" />
+            <line x1="18" y1="18" x2="22" y2="22" stroke="#ef4444" strokeWidth="2" />
+          </g>
+
+          {/* Lemon slice & garnish */}
+          <circle cx="70" cy="62" r="6" fill="#facc15" />
+          <circle cx="70" cy="62" r="4.5" fill="#fef08a" />
+          <circle cx="28" cy="38" r="3" fill="#22c55e" />
+        </>
+      );
+
+    case "19-2b":
+      // 6b. Shenao Promontory Capybara Rock (A giant cute capybara shaped rock by the blue ocean)
       return renderWithCircleClip(
         <>
           <rect width="100" height="100" fill="url(#skyGrad)" />
           {renderSoftClouds()}
 
-          {/* Sparkling sea */}
-          <path d="M -10,50 L 110,50 L 110,105 L -10,105 Z" fill="url(#seaGrad)" />
-          <path d="M -10,56 Q 25,52 60,57 T 110,56" stroke="#e0f2fe" strokeWidth="1" fill="none" opacity="0.4" />
+          {/* Ocean Waves */}
+          <path d="M -10,54 Q 25,50 60,54 T 110,54 L 110,105 L -10,105 Z" fill="url(#seaGrad)" />
+          <path d="M -10,58 Q 20,56 50,60 T 110,58" stroke="#ffffff" strokeWidth="1.2" fill="none" opacity="0.4" />
 
-          {/* Coastal green hills on the right */}
-          <path d="M 55,105 L 110,105 L 110,42 Q 80,44 65,58 Z" fill="url(#hillGrad)" />
+          {/* Capybara Rock Profile */}
+          <g transform="translate(14, 25)">
+            {/* Main body of the rock */}
+            <path d="M 12,65 C 10,48 20,32 36,32 C 44,32 48,24 56,24 C 68,24 74,32 74,45 C 74,52 70,65 72,75 L 0,75 Z" fill="#854d0e" />
+            <path d="M 14,63 C 12,49 21,35 36,35 C 43,35 46,27 54,27 C 65,27 70,34 71,45 C 71,51 68,63 70,72 L 4,72 Z" fill="#a16207" />
 
-          {/* Railway Tracks running along coast */}
-          <polygon points="-10,102 110,80 110,88 -10,105" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
-          {/* Rails */}
-          <line x1="-10" y1="102" x2="110" y2="80" stroke="#475569" strokeWidth="2.5" />
-          <line x1="-10" y1="105" x2="110" y2="83" stroke="#475569" strokeWidth="2.5" />
-          {/* Wooden ties */}
-          <line x1="10" y1="100" x2="8" y2="105" stroke="#451a03" strokeWidth="1.5" />
-          <line x1="30" y1="96" x2="28" y2="101" stroke="#451a03" strokeWidth="1.5" />
-          <line x1="50" y1="92" x2="48" y2="97" stroke="#451a03" strokeWidth="1.5" />
-          <line x1="70" y1="88" x2="68" y2="93" stroke="#451a03" strokeWidth="1.5" />
-          <line x1="90" y1="84" x2="88" y2="89" stroke="#451a03" strokeWidth="1.5" />
-
-          {/* Cute pufferfish rail-bike cart */}
-          <g transform="translate(18, 40) rotate(-4 18 40)">
-            {/* Metal chassis */}
-            <rect x="5" y="32" width="36" height="4" fill="#64748b" />
-            {/* Bike wheels */}
-            <circle cx="12" cy="34" r="5" fill="#1e293b" />
-            <circle cx="12" cy="34" r="2" fill="#cbd5e1" />
-            <circle cx="32" cy="34" r="5" fill="#1e293b" />
-            <circle cx="32" cy="34" r="2" fill="#cbd5e1" />
-
-            {/* Pufferfish Cabin (Cute rounded dome) */}
-            <path d="M 4,26 C 4,10 40,10 40,26 Z" fill="#38bdf8" />
-            <path d="M 8,26 C 8,15 36,15 36,26 Z" fill="#fef08a" opacity="0.9" />
+            {/* Capybara Ear Rock */}
+            <path d="M 44,28 Q 46,20 49,26 Z" fill="#713f12" />
             
-            {/* Striped Canopy Roof */}
-            <path d="M 4,10 C 12,0 32,0 40,10 Z" fill="#ef4444" />
-            <path d="M 10,6 L 14,11 M 20,4 L 20,11 M 30,6 L 26,11" stroke="#ffffff" strokeWidth="2.5" />
+            {/* Capybara Sleepy Eye Crevice */}
+            <ellipse cx="60" cy="34" rx="3.5" ry="1" fill="#451a03" />
+            <line x1="57" y1="34" x2="63" y2="34" stroke="#451a03" strokeWidth="1" />
 
-            {/* Giant cartoon eye */}
-            <circle cx="32" cy="18" r="3.5" fill="#ffffff" />
-            <circle cx="33" cy="18" r="1.5" fill="#1e293b" />
-            
-            {/* Happy blushing smile */}
-            <path d="M 36,22 Q 34,24 32,22" fill="none" stroke="#1e293b" strokeWidth="1" strokeLinecap="round" />
-            <circle cx="28" cy="21" r="1" fill="#f43f5e" />
+            {/* Snout Details and nose crevice */}
+            <path d="M 72,40 Q 74,44 72,48" stroke="#451a03" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="68" cy="42" r="1" fill="#451a03" />
 
-            {/* Little side fin */}
-            <path d="M 18,24 Q 14,29 20,29 Z" fill="#38bdf8" />
+            {/* Honeycomb sandstone texture dots */}
+            <circle cx="28" cy="48" r="1.5" fill="#451a03" opacity="0.3" />
+            <circle cx="34" cy="44" r="1" fill="#451a03" opacity="0.3" />
+            <circle cx="45" cy="42" r="1.8" fill="#451a03" opacity="0.3" />
+            <circle cx="50" cy="50" r="1.2" fill="#451a03" opacity="0.3" />
+            <circle cx="24" cy="56" r="1.5" fill="#451a03" opacity="0.3" />
+            <circle cx="42" cy="58" r="1.2" fill="#451a03" opacity="0.3" />
+            <circle cx="58" cy="54" r="1.6" fill="#451a03" opacity="0.3" />
           </g>
+
+          {/* Little green grass on the cliff edge */}
+          <path d="M 15,85 Q 18,72 24,78" stroke="#22c55e" strokeWidth="2" fill="none" />
+          <path d="M 20,88 Q 23,76 28,82" stroke="#16a34a" strokeWidth="1.5" fill="none" />
         </>
       );
 
     case "19-3":
-      // 7. Jinguashi Gold Museum (Mine tunnel, gold mine cart, gold bars)
+      // 7. Yinyang Sea (Glittering golden-yellow runoff meeting deep cobalt blue ocean water)
+      return renderWithCircleClip(
+        <>
+          <rect width="100" height="100" fill="url(#skyGrad)" />
+          {renderSoftClouds()}
+
+          {/* Deep Blue Ocean */}
+          <path d="M -10,45 L 110,45 L 110,105 L -10,105 Z" fill="#1d4ed8" />
+          
+          {/* Swirling Golden Yellow bay water */}
+          <path d="M -10,65 Q 25,50 65,70 T 110,55 L 110,105 L -10,105 Z" fill="#eab308" opacity="0.85" />
+          {/* Swirling transition area */}
+          <path d="M -10,75 Q 30,62 70,82 T 110,72 L 110,105 L -10,105 Z" fill="#ca8a04" opacity="0.9" />
+
+          {/* Highlights and swirls */}
+          <path d="M 10,68 Q 35,58 55,75" stroke="#fef08a" strokeWidth="2" fill="none" opacity="0.6" strokeLinecap="round" />
+          <path d="M 40,74 Q 60,62 80,80" stroke="#fde047" strokeWidth="1.5" fill="none" opacity="0.6" strokeLinecap="round" />
+          <path d="M 25,82 Q 55,72 85,90" stroke="#3b82f6" strokeWidth="1.5" fill="none" opacity="0.4" strokeLinecap="round" />
+
+          {/* Rugged green mountain cape framing the left side */}
+          <path d="M -10,105 L 35,105 L 20,52 Q -2,48 -10,62 Z" fill="url(#mountainGrad)" />
+          {/* Ruined mining remnants on cliff */}
+          <rect x="2" y="68" width="8" height="6" fill="#475569" rx="0.5" />
+          <rect x="5" y="62" width="4" height="6" fill="#334155" rx="0.5" />
+        </>
+      );
+
+    case "19-3b":
+      // 7b. Golden Waterfall (Water cascading over brilliant orange-yellow oxidized mineral rocks)
+      return renderWithCircleClip(
+        <>
+          {/* Sky backdrop */}
+          <rect width="100" height="100" fill="url(#skyGrad)" />
+          {renderSoftClouds()}
+
+          {/* Orange/Golden mineral-rich mountain slope */}
+          <path d="M -10,32 L 110,32 L 110,105 L -10,105 Z" fill="#ea580c" />
+          <path d="M -10,42 Q 25,36 60,42 T 110,40 L 110,105 L -10,105 Z" fill="#c2410c" />
+          
+          {/* Distinct golden yellow rock ridges */}
+          <path d="M -10,60 Q 30,52 70,62 T 110,58 L 110,105 L -10,105 Z" fill="#eab308" />
+          <path d="M -10,78 Q 40,72 80,82 T 110,76 L 110,105 L -10,105 Z" fill="#ca8a04" />
+
+          {/* White & light blue cascading waterfall streams */}
+          <g opacity="0.85">
+            <path d="M 24,32 L 28,62 M 28,32 L 32,60 M 35,32 L 38,58" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M 52,32 L 48,60 M 56,32 L 53,58 L 51,78" stroke="#e0f2fe" strokeWidth="2" strokeLinecap="round" />
+            <path d="M 68,32 L 72,62 M 72,32 L 75,58 L 78,75" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
+            
+            <path d="M 28,60 Q 32,75 22,105" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+            <path d="M 38,58 Q 42,78 48,105" stroke="#e0f2fe" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M 51,75 Q 46,90 55,105" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+            <path d="M 78,72 Q 72,92 82,105" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
+          </g>
+
+          {/* Water splashes and mist at the bottom */}
+          <ellipse cx="30" cy="100" rx="16" ry="6" fill="#ffffff" opacity="0.8" />
+          <ellipse cx="55" cy="101" rx="18" ry="5" fill="#e0f2fe" opacity="0.85" />
+          <ellipse cx="78" cy="100" rx="14" ry="6" fill="#ffffff" opacity="0.8" />
+
+          {/* Lush green moss on top side cliffs */}
+          <path d="M -5,32 Q 10,28 14,45 T -5,65 Z" fill="#15803d" />
+          <path d="M 85,32 Q 100,28 105,48 T 88,68 Z" fill="#166534" />
+        </>
+      );
+
+    case "19-3c":
+      // 7c. Jinguashi Gold Museum (Mine tunnel, gold mine cart, gold bars)
       return renderWithCircleClip(
         <>
           <rect width="100" height="100" fill="url(#skyGrad)" />
@@ -599,8 +696,8 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
 
             {/* Sparkling pile of golden ore chunks */}
             <path d="M 6,6 C 10,-4 20,-6 24,-2 C 28,-6 36,-2 40,6 Z" fill="url(#goldGrad)" />
-            <polygon points="12,-1 15,2 11,3" fill="#ffffff" /> {/* sparkle */}
-            <polygon points="30,-3 32,0 28,1" fill="#ffffff" /> {/* sparkle */}
+            <polygon points="12,-1 15,2 11,3" fill="#ffffff" />
+            <polygon points="30,-3 32,0 28,1" fill="#ffffff" />
           </g>
 
           {/* Two heavy shiny solid Gold Bars in the foreground */}
@@ -621,47 +718,39 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
       );
 
     case "19-4":
-      // 8. Buyan Pavilion (不厭亭 - Glorious sunset orange mountain view with traditional pavilion)
+      // 8. Return to Taipei (Comfortable private car on highway heading to city skyline)
       return renderWithCircleClip(
         <>
-          <rect width="100" height="100" fill="url(#sunsetGrad)" />
-          
-          {/* Big glowing white/yellow setting sun */}
-          <circle cx="35" cy="46" r="11" fill="#ffffff" />
-          <circle cx="35" cy="46" r="14" fill="#fef08a" opacity="0.3" />
+          <rect width="100" height="100" fill="url(#skyGrad)" />
+          {renderSoftClouds()}
 
-          {/* Distant soft purple-grey ridge silhouettes */}
-          <path d="M -10,55 Q 20,44 48,56 T 110,52 L 110,105 L -10,105 Z" fill="#631b53" opacity="0.4" />
-          <path d="M -10,62 Q 25,54 65,64 T 110,58 L 110,105 L -10,105 Z" fill="#4d103d" opacity="0.6" />
+          {/* City skyline silhouettes with Taipei 101 far away */}
+          <rect x="68" y="35" width="6" height="25" fill="#cbd5e1" />
+          <polygon points="68,35 74,35 71,18" fill="#94a3b8" />
+          <rect x="52" y="42" width="10" height="18" fill="#94a3b8" />
+          <rect x="78" y="44" width="12" height="16" fill="#94a3b8" />
 
-          {/* Grassy ridge and road leading to pavilion */}
-          <path d="M -10,75 Q 35,68 70,78 L 110,105 L -10,105 Z" fill="#78350f" />
-          <path d="M -10,74 Q 35,67 68,77" stroke="#fbbf24" strokeWidth="2.5" fill="none" /> {/* Scenic road line */}
+          {/* Highway and perspective lanes */}
+          <polygon points="10,105 90,105 60,55 40,55" fill="#475569" />
+          <line x1="50" y1="105" x2="50" y2="55" stroke="#facc15" strokeWidth="1.5" strokeDasharray="4,4" />
+          {/* Side barriers */}
+          <line x1="10" y1="105" x2="40" y2="55" stroke="#ffffff" strokeWidth="2" />
+          <line x1="90" y1="105" x2="60" y2="55" stroke="#ffffff" strokeWidth="2" />
 
-          {/* Traditional Chinese Pavilion sitting on cliff ridge */}
-          <g transform="translate(48, 38)">
-            {/* Foundation deck */}
-            <rect x="6" y="25" width="32" height="4" fill="#475569" rx="1" />
-            <rect x="8" y="29" width="28" height="10" fill="#334155" />
-
-            {/* Red Pillars */}
-            <rect x="10" y="14" width="3" height="12" fill="#ef4444" />
-            <rect x="18" y="14" width="3" height="12" fill="#ef4444" />
-            <rect x="26" y="14" width="3" height="12" fill="#ef4444" />
-            <rect x="31" y="14" width="3" height="12" fill="#ef4444" />
-
-            {/* Sweeping black swallowtail roof */}
-            <path d="M 2,14 Q 22,14 22,4 L 42,14 L 38,10 Q 22,4 6,10 Z" fill="#1e293b" />
-            <path d="M 6,10 L 22,5 L 38,10 L 35,7 L 22,3 L 9,7 Z" fill="#ea580c" />
-            
-            {/* Bench/Railing */}
-            <rect x="9" y="22" width="26" height="3" fill="#b91c1c" />
+          {/* Sleek executive transit shuttle coach */}
+          <g transform="translate(36, 64) scale(0.7)">
+            {/* Wheels */}
+            <circle cx="8" cy="24" r="5" fill="#1e293b" />
+            <circle cx="32" cy="24" r="5" fill="#1e293b" />
+            {/* Body */}
+            <path d="M 2,6 L 36,6 C 39,6 40,8 40,12 L 40,22 C 40,24 38,24 36,24 L 2,24 Z" fill="#0284c7" />
+            <path d="M 2,7 L 18,7 L 18,14 L 2,14 Z" fill="#e2e8f0" opacity="0.9" />
+            <path d="M 20,7 L 35,7 L 35,14 L 20,14 Z" fill="#e2e8f0" opacity="0.9" />
+            {/* Details */}
+            <rect x="2" y="16" width="36" height="2" fill="#0369a1" />
+            {/* Tail lights */}
+            <rect x="0" y="16" width="2" height="4" fill="#ef4444" rx="0.5" />
           </g>
-
-          {/* Golden Pampas Grass details */}
-          <path d="M 5,85 Q 8,72 14,75" fill="none" stroke="#fef08a" strokeWidth="1" />
-          <path d="M 12,90 Q 16,78 20,82" fill="none" stroke="#fef08a" strokeWidth="1" />
-          <path d="M 22,86 Q 24,75 28,78" fill="none" stroke="#fef08a" strokeWidth="1" />
         </>
       );
 
@@ -729,52 +818,6 @@ export default function AttractionIllustration({ id, className = "w-full h-full"
     // ==========================================
 
     case "20-1":
-      // 10. Mengjia Lungshan Temple (Red swallowtail roofs, dragon pillars)
-      return renderWithCircleClip(
-        <>
-          <rect width="100" height="100" fill="url(#skyGrad)" />
-          {renderSoftClouds()}
-
-          {/* Intricate swallowtail roof curves of Lungshan Temple */}
-          <g transform="translate(6, 26)">
-            {/* Base walls */}
-            <rect x="15" y="28" width="58" height="26" fill="#b91c1c" stroke="#7c1d1d" strokeWidth="1" />
-            <rect x="22" y="32" width="44" height="22" fill="#7f1d1d" />
-
-            {/* Golden entrance door */}
-            <rect x="38" y="36" width="12" height="18" fill="#ea580c" />
-            <line x1="44" y1="36" x2="44" y2="54" stroke="#78350f" strokeWidth="1" />
-
-            {/* Carved stone Dragon Pillars in front of building */}
-            <g transform="translate(20, 26)">
-              <rect x="0" y="0" width="4" height="28" fill="url(#stoneSteps)" />
-              {/* Wrapped gold dragon helix mimic */}
-              <path d="M 0,4 Q 4,8 0,12 Q 4,16 0,20" fill="none" stroke="#f59e0b" strokeWidth="1.2" />
-            </g>
-            <g transform="translate(64, 26)">
-              <rect x="0" y="0" width="4" height="28" fill="url(#stoneSteps)" />
-              <path d="M 0,4 Q 4,8 0,12 Q 4,16 0,20" fill="none" stroke="#f59e0b" strokeWidth="1.2" />
-            </g>
-
-            {/* Sweeping swallowtail curved roof (Double tier) */}
-            {/* Lower roof */}
-            <path d="M 8,28 Q 44,28 44,18 L 80,28 L 74,22 Q 44,12 14,22 Z" fill="#ef4444" />
-            {/* Top main sweeping roof */}
-            <path d="M 12,18 C 18,18 24,12 28,10 L 44,8 L 60,10 C 64,12 70,18 76,18 L 70,13 Q 44,6 18,13 Z" fill="#b91c1c" />
-            <path d="M 18,13 L 44,10 L 70,13 L 66,9 L 44,6 L 22,9 Z" fill="#eab308" opacity="0.95" />
-
-            {/* Dragon sculpture on peak ridge */}
-            <circle cx="44" cy="3" r="1.8" fill="#eab308" />
-            <path d="M 40,5 Q 44,1 48,5" fill="none" stroke="#ea580c" strokeWidth="1.5" />
-          </g>
-
-          {/* Courtyard stone ground */}
-          <path d="M -10,80 L 110,80 L 110,105 L -10,105 Z" fill="#94a3b8" />
-          <line x1="-10" y1="86" x2="110" y2="86" stroke="#cbd5e1" strokeWidth="1.2" />
-          <line x1="-10" y1="92" x2="110" y2="92" stroke="#cbd5e1" strokeWidth="1.2" />
-        </>
-      );
-
     case "20-2":
       // 11. Chiang Kai-shek Memorial Hall (Blue octagonal roof, white facade, red carpet)
       return renderWithCircleClip(
