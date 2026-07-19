@@ -12,6 +12,13 @@ export interface Activity {
   isReminder?: boolean;
 }
 
+export interface DriverInfo {
+  name: string;
+  phone: string;
+  licensePlate: string;
+  notes?: string;
+}
+
 export interface DayItinerary {
   date: string;
   dayOfWeek: string;
@@ -30,6 +37,7 @@ export interface DayItinerary {
   driverPhone?: string;
   licensePlate?: string;
   driverNotes?: string;
+  drivers?: DriverInfo[];
   colorScheme: {
     primary: string; // Tailored branding color for the day
     accent: string;

@@ -582,13 +582,53 @@ export default function App() {
                 </div>
 
                 {/* Driver & Plate Info */}
-                {(currentDay.driverName || currentDay.driverPhone || currentDay.licensePlate) && (
+                {currentDay.drivers && currentDay.drivers.length > 0 ? (
+                  <div className="border-t border-slate-800 pt-3 mt-2 space-y-3">
+                    {currentDay.drivers.map((driver, idx) => (
+                      <div key={idx} className="bg-slate-950/40 p-3 rounded-xl border border-slate-800/60 space-y-2">
+                        {driver.notes && (
+                          <div className="flex items-center gap-1.5 text-[10px] text-amber-400 font-semibold uppercase tracking-wider">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            {driver.notes}
+                          </div>
+                        )}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300">
+                          <div className="flex items-center gap-2">
+                            <User className="w-4 h-4 text-emerald-400 shrink-0" />
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Driver / 司機</p>
+                              <p className="font-medium text-slate-100">{driver.name}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Contact / 電話</p>
+                              <a href={`tel:${driver.phone}`} className="font-medium text-slate-100 hover:text-emerald-400 transition underline decoration-dotted">
+                                {driver.phone}
+                              </a>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Car className="w-4 h-4 text-emerald-400 shrink-0" />
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Plate / 車牌</p>
+                              <p className="font-medium text-slate-100 bg-slate-800 px-1.5 py-0.2 rounded border border-slate-750 inline-block font-mono text-[11px] mt-0.5">
+                                {driver.licensePlate}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (currentDay.driverName || currentDay.driverPhone || currentDay.licensePlate) && (
                   <div className="border-t border-slate-800 pt-3 mt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300">
                     {currentDay.driverName && (
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-emerald-400 shrink-0" />
                         <div>
-                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Driver / 司機</p>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Driver / 司機</p>
                           <p className="font-medium text-slate-100">{currentDay.driverName}</p>
                         </div>
                       </div>
@@ -597,7 +637,7 @@ export default function App() {
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
                         <div>
-                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Contact / 電話</p>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Contact / 電話</p>
                           <a href={`tel:${currentDay.driverPhone}`} className="font-medium text-slate-100 hover:text-emerald-400 transition underline decoration-dotted">
                             {currentDay.driverPhone}
                           </a>
@@ -608,7 +648,7 @@ export default function App() {
                       <div className="flex items-center gap-2">
                         <Car className="w-4 h-4 text-emerald-400 shrink-0" />
                         <div>
-                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Plate / 車牌</p>
+                          <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Plate / 車牌</p>
                           <p className="font-medium text-slate-100 bg-slate-800 px-1.5 py-0.2 rounded border border-slate-700 inline-block font-mono text-[11px] mt-0.5">
                             {currentDay.licensePlate}
                           </p>

@@ -192,10 +192,20 @@ export const ITINERARY_DATA: DayItinerary[] = [
     hotel: "The Old England, Cingjing (老英格蘭莊園)",
     hotelChineseName: "清境老英格蘭莊園",
     hotelNotes: "A breathtaking English Tudor-style luxury castle nestled high in the mist-shrouded central mountains of Nantou.",
-    driverName: "Mr. Chen (陳先生)",
-    driverPhone: "0961-100-049",
-    licensePlate: "RDP-7537",
-    driverNotes: "Active Hours: 09:00 - 13:30 (Morning transfers only / 僅提供 09:00 - 13:30 上午行程接駁)",
+    drivers: [
+      {
+        name: "Mr. Chen (陳先生)",
+        phone: "0961-100-049",
+        licensePlate: "RDP-7537",
+        notes: "Morning / 上午 09:00 - 13:30"
+      },
+      {
+        name: "Mr. Liao (廖本仁 先生)",
+        phone: "0963-565792",
+        licensePlate: "RFD-8667",
+        notes: "Afternoon / 下午 13:30 (Transfer to Cingjing / 往清境接送)"
+      }
+    ],
     colorScheme: {
       primary: "amber",
       accent: "#e07a5f",
@@ -255,7 +265,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
         chineseName: "台北開車往南投清境 (3小時山路專車)",
         description: "Return to Madison Taipei Hotel to load the stored luggage, then depart Taipei in a comfortable executive coach. Journey south and climb into the spectacular Central Mountain Range of Nantou County.",
         icon: "truck",
-        notes: "First collect the luggage stored at Madison Taipei (回慕軒飯店載行李). Watch the scenery transform into crisp, mist-kissed alpine cedar forests.",
+        notes: "Driver: Mr. Liao (廖本仁 先生, 0963-565792, License Plate: RFD-8667). First collect the luggage stored at Madison Taipei (回慕軒飯店載行李).",
         coords: { x: 49, y: 32 }
       },
       {
