@@ -27,9 +27,78 @@ import {
   Bell,
   Phone,
   User,
-  Upload,
-  Trash2
+  Languages,
+  MessageSquare,
+  Maximize2,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
+
+const TRANSLATION_PHRASES = [
+  {
+    id: "restroom",
+    category: "Restroom / 廁所",
+    english: "Can we stop at a convenience store or service area for a restroom break, please?",
+    chinese: "請問可以在便利商店或休息站停一下，讓我上個廁所嗎？",
+    pinyin: "Qǐngwèn kěyǐ zài biànlì shāngdiàn huò xiūxízhàn tíng yīxià, ràng wǒ shàng gè cèsuǒ ma?"
+  },
+  {
+    id: "ac_cold",
+    category: "AC / 空調",
+    english: "Could you please turn down the air conditioning? It's a bit cold.",
+    chinese: "空調有點冷，可以請您將冷氣調弱一點嗎？謝謝。",
+    pinyin: "Kōngtiáo yǒudiǎn lěng, kěyǐ qǐng nín jiāng lěngqì tiáo ruò yīdiǎn ma? Xièxiè."
+  },
+  {
+    id: "ac_warm",
+    category: "AC / 空調",
+    english: "Could you please turn up the air conditioning? It's a bit warm.",
+    chinese: "車內有點熱，可以請您將冷氣調強一點嗎？謝謝。",
+    pinyin: "Chēnèi yǒudiǎn rè, kěyǐ qǐng nín jiāng lěngqì tiáo qiáng yīdiǎn ma? Xièxiè."
+  },
+  {
+    id: "drop_off",
+    category: "Drop-off / 下車",
+    english: "Please drop me off here. Thank you.",
+    chinese: "請在這裡讓我下車，謝謝您。",
+    pinyin: "Qǐng zài zhèlǐ ràng wǒ xiàchē, xièxiè nín."
+  },
+  {
+    id: "luggage",
+    category: "Luggage / 行李",
+    english: "Could you please help me open the trunk for my luggage?",
+    chinese: "可以請您幫我開一下後車廂拿行李嗎？謝謝。",
+    pinyin: "Kěyǐ qǐng nín bāng wǒ kāi yīxià hòu chēxiāng ná xínglǐ ma? Xièxiè."
+  },
+  {
+    id: "wait",
+    category: "Wait / 稍等",
+    english: "Please wait for me here. I'll be back in a few minutes.",
+    chinese: "請在這裡等我一下，我幾分鐘後就回來。謝謝。",
+    pinyin: "Qǐng zài zhèlǐ děng wǒ yīxià, wǒ jǐ fēnzhōng hòu jiù huílái. Xièxiè."
+  },
+  {
+    id: "hotel",
+    category: "Hotel / 飯店",
+    english: "Please take me back to the hotel. Thank you.",
+    chinese: "請載我回飯店，謝謝您。",
+    pinyin: "Qǐng zài wǒ huí fàndiàn, xièxiè nín."
+  },
+  {
+    id: "destination",
+    category: "Arrived / 到達",
+    english: "Is this our destination?",
+    chinese: "請問這裡就是目的地了嗎？",
+    pinyin: "Qǐngwèn zhèlǐ jiùshì mùdìdìle ma?"
+  },
+  {
+    id: "slow",
+    category: "Speed / 速度",
+    english: "Could you please drive a bit slower? Thank you.",
+    chinese: "可以請您開慢一點嗎？謝謝。",
+    pinyin: "Kěyǐ qǐng nín kāi màn yīdiǎn ma? Xièxiè."
+  }
+];
 
 function DayFocusImage({ date }: { date: string }) {
   const [imgError, setImgError] = useState(false);
@@ -103,53 +172,10 @@ export default function App() {
 
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
-
-  // State for persistent custom uploaded itinerary photos
-  const [uploadedPhotos, setUploadedPhotos] = useState<Record<string, string>>(() => {
-    try {
-      const saved = localStorage.getItem("uploaded-itinerary-photos");
-      return saved ? JSON.parse(saved) : {};
-    } catch (e) {
-      return {};
-    }
-  });
-
-  const handlePhotoUpload = (activityId: string, event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 2 * 1024 * 1024) {
-      alert("Image is too large. Please select an image under 2MB. / 圖片容量過大，請選擇 2MB 以下的圖片。");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const base64 = e.target?.result as string;
-      if (base64) {
-        const updated = { ...uploadedPhotos, [activityId]: base64 };
-        setUploadedPhotos(updated);
-        try {
-          localStorage.setItem("uploaded-itinerary-photos", JSON.stringify(updated));
-        } catch (err) {
-          console.error("Failed to save to localStorage:", err);
-          alert("Storage space full. Could not save photo permanently, but it is loaded for this session.");
-        }
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handlePhotoDelete = (activityId: string) => {
-    const updated = { ...uploadedPhotos };
-    delete updated[activityId];
-    setUploadedPhotos(updated);
-    try {
-      localStorage.setItem("uploaded-itinerary-photos", JSON.stringify(updated));
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  
+  // State for driver translator tool
+  const [isTranslatorExpanded, setIsTranslatorExpanded] = useState(false);
+  const [activePhrase, setActivePhrase] = useState<typeof TRANSLATION_PHRASES[0] | null>(null);
 
   // Web Audio API custom sine wave double chime synthesis
   const playStepChime = () => {
@@ -408,15 +434,7 @@ export default function App() {
                             {/* Cute Illustration - Styled as a circular badge like the uploaded style reference */}
                             <div className="w-20 h-20 sm:w-28 sm:h-28 shrink-0 bg-white rounded-full p-[1px] border border-white shadow-lg shadow-slate-200/80 flex items-center justify-center overflow-hidden self-start">
                               <div className="w-full h-full rounded-full overflow-hidden">
-                                {uploadedPhotos[act.id] ? (
-                                  <img
-                                    src={uploadedPhotos[act.id]}
-                                    alt={act.title}
-                                    className="w-full h-full object-cover rounded-full"
-                                  />
-                                ) : (
-                                  <AttractionIllustration id={act.id} />
-                                )}
+                                <AttractionIllustration id={act.id} />
                               </div>
                             </div>
                             
@@ -509,130 +527,7 @@ export default function App() {
                             </div>
                           )}
 
-                          {/* Custom Photo Uploader Container */}
-                          {!isReminder && (
-                            <div className="mt-4 pt-4 border-t border-emerald-100/60">
-                              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
-                                旅程相簿 & 圖片配置 / Photo Album & Assets Configuration
-                              </span>
-                              
-                              {uploadedPhotos[act.id] ? (
-                                <div className="relative rounded-xl overflow-hidden border border-emerald-200 bg-white shadow-md shadow-emerald-50/50 group">
-                                  <img
-                                    src={uploadedPhotos[act.id]}
-                                    alt={`${act.title} Uploaded`}
-                                    className="w-full h-40 sm:h-52 object-cover transition duration-300 group-hover:scale-[1.02]"
-                                  />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-200 flex flex-col justify-end p-3">
-                                    <div className="flex gap-2">
-                                      <label className="text-[10px] font-bold px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white transition cursor-pointer flex items-center gap-1 shadow-lg">
-                                        <Upload className="w-3 h-3" />
-                                        <span>更換圖片 / Change</span>
-                                        <input
-                                          type="file"
-                                          accept="image/*"
-                                          className="hidden"
-                                          onChange={(e) => handlePhotoUpload(act.id, e)}
-                                        />
-                                      </label>
-                                      <button
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          handlePhotoDelete(act.id);
-                                        }}
-                                        className="text-[10px] font-bold px-3 py-1.5 rounded bg-red-600 hover:bg-red-500 text-white transition flex items-center gap-1 shadow-lg"
-                                      >
-                                        <Trash2 className="w-3 h-3" />
-                                        <span>恢復預設 / Delete</span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between text-[10px]">
-                                    <span className="font-semibold text-emerald-800 flex items-center gap-1">
-                                      <Camera className="w-3.5 h-3.5" />
-                                      已啟用自訂寫真 / Custom Photo Enabled
-                                    </span>
-                                    {(() => {
-                                      const mapping: Record<string, string> = {
-                                        "18-1": "18-1_taoyuan_airport.png",
-                                        "18-2": "18-2_silks_palace.png",
-                                        "18-3": "18-3_palace_museum.png",
-                                        "18-5": "18-5_grand_hotel.png",
-                                        "18-4": "18-4_ningxia_feast.png",
-                                        "19-1": "19-1_yehliu_geopark.png",
-                                        "19-2": "19-2_shenao_seafood.png",
-                                        "19-2b": "19-2b_capybara_rock.png",
-                                        "19-3": "19-3_yinyang_sea.png",
-                                        "19-3b": "19-3b_golden_waterfall.png",
-                                        "19-3c": "19-3c_gold_museum.png",
-                                        "19-4": "19-4_return_taipei.png",
-                                        "19-5": "19-5_taipei_101.png",
-                                        "20-1": "20-1_cks_memorial.png",
-                                        "20-3": "20-3_din_tai_fung.png",
-                                        "20-4": "20-4_cingjing_transfer.png",
-                                        "20-5": "20-5_old_england.png"
-                                      };
-                                      const filename = mapping[act.id];
-                                      return filename ? (
-                                        <span className="font-mono text-slate-400 bg-slate-100/80 px-1.5 py-0.5 rounded self-start sm:self-auto">
-                                          預設靜態路徑: public/images/{filename}
-                                        </span>
-                                      ) : null;
-                                    })()}
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="border-2 border-dashed border-slate-200 hover:border-emerald-300 rounded-xl bg-white/50 p-4 transition duration-200 flex flex-col items-center justify-center text-center group relative">
-                                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-2 group-hover:bg-emerald-50 transition duration-200">
-                                    <Upload className="w-5 h-5 text-slate-400 group-hover:text-emerald-600 transition duration-200" />
-                                  </div>
-                                  <p className="text-[11px] font-bold text-slate-700">
-                                    尚未上傳此行程自訂相片
-                                  </p>
-                                  <p className="text-[9px] text-slate-400 mt-0.5">
-                                    點擊此區塊上傳（最大 2MB，將儲存於本機瀏覽器）
-                                  </p>
-                                  <label className="absolute inset-0 w-full h-full cursor-pointer">
-                                    <input
-                                      type="file"
-                                      accept="image/*"
-                                      className="hidden"
-                                      onChange={(e) => handlePhotoUpload(act.id, e)}
-                                    />
-                                  </label>
-                                  {(() => {
-                                    const mapping: Record<string, string> = {
-                                      "18-1": "18-1_taoyuan_airport.png",
-                                      "18-2": "18-2_silks_palace.png",
-                                      "18-3": "18-3_palace_museum.png",
-                                      "18-5": "18-5_grand_hotel.png",
-                                      "18-4": "18-4_ningxia_feast.png",
-                                      "19-1": "19-1_yehliu_geopark.png",
-                                      "19-2": "19-2_shenao_seafood.png",
-                                      "19-2b": "19-2b_capybara_rock.png",
-                                      "19-3": "19-3_yinyang_sea.png",
-                                      "19-3b": "19-3b_golden_waterfall.png",
-                                      "19-3c": "19-3c_gold_museum.png",
-                                      "19-4": "19-4_return_taipei.png",
-                                      "19-5": "19-5_taipei_101.png",
-                                      "20-1": "20-1_cks_memorial.png",
-                                      "20-3": "20-3_din_tai_fung.png",
-                                      "20-4": "20-4_cingjing_transfer.png",
-                                      "20-5": "20-5_old_england.png"
-                                    };
-                                    const filename = mapping[act.id];
-                                    return filename ? (
-                                      <div className="mt-3 pt-2.5 border-t border-slate-100/80 w-full flex items-center justify-center">
-                                        <span className="font-mono text-[9px] text-slate-400">
-                                          💡 亦可直接將檔案命名為 <strong className="text-slate-600 bg-slate-100 px-1 py-0.5 rounded">{filename}</strong> 放進 <strong className="text-slate-600 bg-slate-100 px-1 py-0.5 rounded">public/images/</strong>
-                                        </span>
-                                      </div>
-                                    ) : null;
-                                  })()}
-                                </div>
-                              )}
-                            </div>
-                          )}
+
                         </div>
                       ) : (
                         <div className={`flex-1 transition rounded-xl p-2 -my-2 border border-transparent min-w-0 ${
@@ -642,15 +537,7 @@ export default function App() {
                             {/* Mini Illustration - Styled as a circular badge like the uploaded style reference */}
                             <div className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 bg-white rounded-full p-[1px] border border-white shadow-md shadow-slate-200/60 flex items-center justify-center overflow-hidden self-start">
                               <div className="w-full h-full rounded-full overflow-hidden">
-                                {uploadedPhotos[act.id] ? (
-                                  <img
-                                    src={uploadedPhotos[act.id]}
-                                    alt={act.title}
-                                    className="w-full h-full object-cover rounded-full"
-                                  />
-                                ) : (
-                                  <AttractionIllustration id={act.id} />
-                                )}
+                                <AttractionIllustration id={act.id} />
                               </div>
                             </div>
 
@@ -857,6 +744,55 @@ export default function App() {
                     <span className="font-medium">{currentDay.driverNotes}</span>
                   </div>
                 )}
+
+                {/* Driver Communication Translator Panel */}
+                <div className="border-t border-slate-800 pt-4 mt-3">
+                  <button
+                    onClick={() => setIsTranslatorExpanded(!isTranslatorExpanded)}
+                    className="w-full flex items-center justify-between py-2 px-3 rounded-xl bg-slate-850 hover:bg-slate-800 hover:text-emerald-400 transition text-[11px] font-bold text-slate-200 border border-slate-800 cursor-pointer"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Languages className="w-4 h-4 text-emerald-400" />
+                      <span>Driver Communication / 司機溝通常用語</span>
+                    </span>
+                    <span className="text-slate-400 flex items-center gap-1">
+                      {isTranslatorExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                    </span>
+                  </button>
+
+                  {isTranslatorExpanded && (
+                    <div className="mt-3 space-y-3 animate-fadeIn">
+                      <p className="text-[10px] text-slate-400 leading-normal">
+                        Select a phrase to show it to the driver in extra-large Chinese characters.
+                        <br />
+                        點擊下方常用語，可放大字體方便直接出示給司機看。
+                      </p>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {TRANSLATION_PHRASES.map((phrase) => (
+                          <button
+                            key={phrase.id}
+                            onClick={() => setActivePhrase(phrase)}
+                            className="text-left p-3 bg-slate-950/60 hover:bg-emerald-950/40 hover:border-emerald-500/30 border border-slate-800/80 rounded-xl transition cursor-pointer flex flex-col justify-between h-full group"
+                          >
+                            <div className="flex items-center justify-between w-full mb-1">
+                              <span className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded font-mono">
+                                {phrase.category}
+                              </span>
+                              <Maximize2 className="w-3 h-3 text-slate-500 group-hover:text-emerald-400 transition" />
+                            </div>
+                            <p className="text-[11px] font-semibold text-slate-200 line-clamp-1 leading-snug">
+                              {phrase.english}
+                            </p>
+                            <p className="text-[10px] text-slate-400 font-sans mt-0.5 line-clamp-1 leading-snug">
+                              {phrase.chinese}
+                            </p>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
             </div>
@@ -888,6 +824,66 @@ export default function App() {
           </p>
         </div>
       </footer>
+
+      {/* Immersive Driver Translation Overlay Modal */}
+      {activePhrase && (
+        <div 
+          className="fixed inset-0 z-50 bg-slate-950/95 flex items-center justify-center p-4 backdrop-blur-md"
+          onClick={() => setActivePhrase(null)}
+        >
+          <div 
+            className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative text-white animate-scaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top Bar with categories & Close */}
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-2">
+                <Languages className="w-5 h-5 text-emerald-400" />
+                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full uppercase font-mono tracking-wider">
+                  {activePhrase.category}
+                </span>
+              </div>
+              <button 
+                onClick={() => setActivePhrase(null)}
+                className="text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl transition cursor-pointer text-xs font-semibold"
+              >
+                Close / 關閉
+              </button>
+            </div>
+
+            {/* Instruction for Guest & Driver */}
+            <p className="text-xs text-slate-400 text-center italic">
+              Show this screen to your driver / 請向司機出示此畫面：
+            </p>
+
+            {/* Large Chinese Display Section */}
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-10 text-center space-y-4 shadow-inner">
+              <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-wide font-sans">
+                {activePhrase.chinese}
+              </p>
+              <p className="text-xs sm:text-sm text-slate-550 font-mono italic text-slate-500">
+                Pinyin: {activePhrase.pinyin}
+              </p>
+            </div>
+
+            {/* English counterpart */}
+            <div className="space-y-1 pt-2">
+              <span className="text-[9px] uppercase tracking-wider text-slate-500 font-bold block">English Reference</span>
+              <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+                {activePhrase.english}
+              </p>
+            </div>
+
+            {/* Tap to exit indicator */}
+            <button
+              onClick={() => setActivePhrase(null)}
+              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition duration-200 text-xs sm:text-sm shadow-lg shadow-emerald-950/40 cursor-pointer"
+            >
+              Done / 確定
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
